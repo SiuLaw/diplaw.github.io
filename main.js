@@ -20,8 +20,10 @@ $(document).ready( function() {
 	
 	
 	// Fade in
-	$("div").hide();
-	$("div").fadeIn();
+	/*
+	$(document).hide();
+	$(document).fadeIn("slow");
+	*/
 	
 	
 	// On clicking ability icons
