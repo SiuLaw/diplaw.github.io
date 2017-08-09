@@ -112,4 +112,13 @@ $(document).ready( function() {
 				
 	});
 	
+	// On clicking brand icons
+	$(".brand").on("click", function() {
+		$(this).toggleClass("highlightB");
+		var selectedIndex = brandNameList.indexOf( $(this).attr("id") );
+		brandCheckList[selectedIndex] = ( brandCheckList[selectedIndex] + 1 ) % 2;
+		visualCheckList();
+				
+	});
+	
 });
