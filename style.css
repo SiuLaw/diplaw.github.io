@@ -1,0 +1,12 @@
+* {
+  border: 1px solid rgba(0,0,0,0.3);
+}
+
+.abilitiesList img  {
+  height: 100px;
+  width: 100px;
+}
+
+.highlight {
+	background-color: red 
+}
