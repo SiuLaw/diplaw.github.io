@@ -29,6 +29,14 @@ $(document).ready( function() {
 							"Brand_Special_Saver",		"Brand_Stealth_Jump",		"Brand_Sub_Power_Up",		"Brand_Swim_Speed_Up",		"Brand_Tenacity",
 							"Brand_Thermal_Ink"
 							]
+							
+	var shortNameList = [	"Ability Doubler",		"Bomb Defense Up",	"Cold Blooded",			"Comeback",				"Drop Roller",
+							"Haunt",				"Ink Recovery Up",	"Ink Resistance Up",	"Ink Saver (Main)",		"Ink Saver Sub",
+							"Last-Ditch Effort",	"Ninja Squid",		"Object Shredder",		"Opening Gambit",		"Quick Respawn",
+							"Quick Super Jump",		"Respawn Punisher",	"Run Speed Up",			"Special Charge Up",	"Special Power Up",
+							"Special Saver",		"Stealth Jump",		"Sub Power Up",			"Swim Speed Up",		"Tenacity",
+							"Thermal Ink"
+							]
 	// Functions
 	function visualCheckList(){
 		$("#list").text( abilityCheckList + " ; " + brandCheckList );
@@ -57,8 +65,30 @@ $(document).ready( function() {
 		}
 	}
 	
-	// function filterGearByAbility( body, ability ) {
-		// output string of 
+	// filter head gear by ability
+	function filterHeadGearByAbility( abilities ) {
+		
+		var filteredArray = [];
+		// alert("There are " + abilities.length + " abilities need filtering.")
+		
+		for( var i = 0; i < abilities.length; i++ ) {
+			// alert( abilities[i] );
+			filteredArray = filteredArray.concat( gearList.filter( function(el) { 
+				return 	el.ability === abilities[i] &&
+						el.body === "head"
+			}));
+		}
+		
+		var headGearList = []
+		filteredArray.forEach( function( arrayItem ) {
+			// alert( arrayItem.name );
+			headGearList.push( arrayItem.name );
+		});
+		$(".headGear").text( headGearList );
+		
+		// if( filteredArray.length === 0 ) { alert( " There are no matching head gears" ) };
+	}
+		
 	
 	// gear constructor
 	function gear( name, body, brand, price, ability, rarity) {
@@ -70,6 +100,17 @@ $(document).ready( function() {
 		this.rarity = rarity;
 	}
 	
+	
+	// index to short name
+	function index2shortName() {
+		var resultList = [];
+		for( var i = 0; i < abilityCheckList.length; i++ ) {
+			if( abilityCheckList[i] === 1 ) {
+				resultList.push( shortNameList[i] );
+			}
+		}
+		return resultList;
+	}
 	
 	
 	var gearList = [];
@@ -109,7 +150,10 @@ $(document).ready( function() {
 		var selectedIndex = abilityNameList.indexOf( $(this).attr("id") );
 		abilityCheckList[selectedIndex] = ( abilityCheckList[selectedIndex] + 1 ) % 2;
 		visualCheckList();
-				
+		
+		var abilityList = index2shortName();
+		
+		filterHeadGearByAbility(abilityList);
 	});
 	
 	// On clicking brand icons
@@ -118,7 +162,6 @@ $(document).ready( function() {
 		var selectedIndex = brandNameList.indexOf( $(this).attr("id") );
 		brandCheckList[selectedIndex] = ( brandCheckList[selectedIndex] + 1 ) % 2;
 		visualCheckList();
-				
 	});
 	
 });
