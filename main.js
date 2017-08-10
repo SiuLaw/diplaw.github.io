@@ -30,7 +30,7 @@ $(document).ready( function() {
 							"Brand_Thermal_Ink"
 							]
 							
-	var shortNameList = [	"Ability Doubler",		"Bomb Defense Up",	"Cold Blooded",			"Comeback",				"Drop Roller",
+	var shortNameList = [	"Ability Doubler",		"Bomb Defense Up",	"Cold-Blooded",			"Comeback",				"Drop Roller",
 							"Haunt",				"Ink Recovery Up",	"Ink Resistance Up",	"Ink Saver (Main)",		"Ink Saver Sub",
 							"Last-Ditch Effort",	"Ninja Squid",		"Object Shredder",		"Opening Gambit",		"Quick Respawn",
 							"Quick Super Jump",		"Respawn Punisher",	"Run Speed Up",			"Special Charge Up",	"Special Power Up",
@@ -94,6 +94,8 @@ $(document).ready( function() {
 	
 	
 	var gearList = [];
+	
+	// Headgear
 	gearList.push( new gear( "18K_Aviators", 			"head",	"Rockenberg",	12000,	"Last-Ditch Effort",	3) );
 	gearList.push( new gear( "Annaki_Beret", 			"head",	"Annaki",		11500,	"Ink Resistance Up",	3) );
 	gearList.push( new gear( "Annaki_Mask",				"head",	"Annaki",		3600,	"Opening Gambit",		2) );
@@ -130,7 +132,7 @@ $(document).ready( function() {
 	gearList.push( new gear( "Noise_Cancelers","head", "Forge", 9200, "Quick Respawn", 3) );
 	
 	gearList.push( new gear( "Paintball_Mask","head", "Forge", 10000, "Comeback", 3) );
-	gearList.push( new gear( "Painter's_Mask","head", "SquidForce", 4500, "Cold-Blooded", 2) );
+	gearList.push( new gear( "Painters_Mask","head", "SquidForce", 4500, "Cold-Blooded", 2) );
 	gearList.push( new gear( "Patched_Hat", "head", "Skalop", 3600, "Cold-Blooded", 2) );
 	gearList.push( new gear( "Pilot_Goggles", "head", "Forge", 5500, "Sub Power Up", 2) );
 	
