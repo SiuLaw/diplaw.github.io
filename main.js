@@ -196,6 +196,16 @@ $(document).ready( function() {
 	gearList.push( new gear( "Armor_Jacket_Replica","cloth","Cuttlegear",0,"Special Charge Up",2) );
 	gearList.push( new gear( "B-ball_Jersey_(Away)","cloth","Zink",800,"Ink Saver (Sub)",1) );
 	
+	// gearList.push( new gear( "","cloth","",0,"",1) );
+	
+	// shoe
+	gearList.push( new gear( "Acerola Rain Boots","shoe","Inkline",600,"Run Speed Up",1) );
+	gearList.push( new gear( "Armor Boot Replicas","shoe","Cuttlegear",0,"Ink Saver (Main)",2) );
+	gearList.push( new gear( "Arrow Pull-Ons","shoe","Toni Kensa",10000,"Drop Roller",3) );
+	gearList.push( new gear( "Birch Climbing Shoes","shoe","Inkline",1200,"Special Charge Up",1) );
+	gearList.push( new gear( "Black Dakroniks","shoe","Zink",1500,"Cold-Blooded",2) );
+	
+	// gearList.push( new gear( "","shoe","",0,"",1) );
 	
 	
 	// On clicking ability icons
@@ -210,19 +220,23 @@ $(document).ready( function() {
 		var shortenGearList = [];
 		
 		var headGearList = filterGearByAbility("head", abilityList)
-		var bodyGearList = filterGearByAbility("cloth", abilityList)
+		var clothGearList = filterGearByAbility("cloth", abilityList)
+		var shoeGearList = filterGearByAbility("shoe", abilityList)
 		
 		shortenGearList = shortenGearList.concat( headGearList );
-		shortenGearList = shortenGearList.concat( bodyGearList );
+		shortenGearList = shortenGearList.concat( clothGearList );
+		shortenGearList = shortenGearList.concat( shoeGearList );
 		
+		// show target gears in text form
 		$(".headGear").text( headGearList )
-		$(".clothGear").text( bodyGearList )
+		$(".clothGear").text( clothGearList )
+		$(".shoeGear").text( shoeGearList )
 		
 		
-		
-		
+		// first hide all gear
 		$(".gear").addClass("hidden");
 		
+		// then un-hide the target gears
 		for( var i=0; i < shortenGearList.length; i++) {
 			
 			var idString = "#" + shortenGearList[i];
