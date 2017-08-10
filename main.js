@@ -164,6 +164,15 @@ $(document).ready( function() {
 	gearList.push( new gear( "White_Headband","head","SquidForce",0,"Ink Recovery Up", 1) );
 	
 	
+	// cloth
+	gearList.push( new gear( "Anchor Sweat","cloth","SquidForce",2,800,"Cold-Blooded",2) );
+	gearList.push( new gear( "Annaki Drive Tee","cloth","Annaki",0,"",1) );
+	gearList.push( new gear( "Annaki Evolution Tee","cloth","Annaki",0,"",1) );
+	gearList.push( new gear( "Armor Jacket Replica","cloth","Cuttlegear",0,"",1) );
+	gearList.push( new gear( "B-ball Jersey (Away)","cloth","Zink",0,"",1) );
+	
+	
+	
 	// On clicking ability icons
 	$(".ability").on("click", function() {
 		$(this).toggleClass("highlightA");
