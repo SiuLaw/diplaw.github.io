@@ -202,32 +202,32 @@ $(document).ready( function() {
 	// 8. start from step 2 until first body part is exhausted
 
 	
-	function maxRepeatAbility(  ) {
+	function maxRepeatAbility( list ) {
 		// output a modified checkList that reflects the maximum amount of repeats
 		
 		// alert( 'function is testing' );
-		var numSelection = getSum( abilityCheckList );
+		var numSelection = getSum( list );
 		
 		switch( numSelection ) {
 			case 0:
 				//alert("0 abilities chosen") ;
-				var output = timesBy(abilityCheckList,0); // Redundant
+				var output = timesBy(list,0); // Redundant
 				break;
 			case 1:
 				//alert("1 abilities chosen");
-				var output = timesBy(abilityCheckList,3);
+				var output = timesBy(list,3);
 				break;
 			case 2:
 				//alert("2 abilities chosen");
-				var output = timesBy(abilityCheckList,2);
+				var output = timesBy(list,2);
 				break;
 			case 3:
 				//alert("3 abilities chosen");
-				var output = timesBy(abilityCheckList,1); // Redundant
+				var output = timesBy(list,1); // Redundant
 				break;
 			default:
 				alert('More than 3 abilities have been chosen, cannot make an outfit!')
-				var output = timesBy(abilityCheckList,0);
+				var output = timesBy(list,0);
 		}
 		
 		return output
@@ -241,7 +241,7 @@ $(document).ready( function() {
 	
 	function chooseGear(abilityList,brandList) {
 		
-		var initialCheckList = maxRepeatAbility();
+		var initialCheckList = maxRepeatAbility(abilityCheckList);
 		// alert( JSON.stringify( initialCheckList ) );
 		
 		// NOTE: may add condition to end outfiting early if no abilities are selected;
