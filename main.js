@@ -115,9 +115,21 @@ $(document).ready( function() {
 			filteredArray1 = gearList.slice();
 		}
 		
+		// Step 2: filter gear based on desired brand ability
+		if( brand.length > 0 ) {
+			// user has chosen some brand ability, filter gear from previous list: filteredArray1
+			for( var i = 0; i < brand.length; i++ ) {
+				filteredArray2 = filteredArray2.concat( filteredArray1.filter( function(el) { 
+					return 	el.brandAbility() === brand[i] && 
+							el.body === body
+				}));
+			}
+		} else {
+			// user has not chosen any main ability, return same gear list as filteredArray1
+			filteredArray2 = filteredArray1.slice();
+		}
 		
-		
-		return filteredArray1;
+		return filteredArray2;
 	}
 	
 	// extract gear names from array of gears
@@ -145,8 +157,9 @@ $(document).ready( function() {
 	
 	gear.prototype.brandAbility = function() {
 		
+		var id = brandList.indexOf( this.brand ) 
 		
-		return 
+		return brandAbilityList[id]
 	}
 	
 	
@@ -226,7 +239,6 @@ $(document).ready( function() {
 		this.shoe = shoe;
 	}
 	
-	
 	function chooseGear(abilityList) {
 		
 		var initialCheckList = maxRepeatAbility();
@@ -298,9 +310,7 @@ $(document).ready( function() {
 	}
 	
 	
-		
-	
-	
+
 	
 	var gearList = [];
 	
@@ -429,9 +439,12 @@ $(document).ready( function() {
 		alert( abilityList )
 		alert( brandList )
 		
-		var headGearName = extractNamesFromArray( filterGearByAbility("head", abilityList) )
-		var clothGearName = extractNamesFromArray( filterGearByAbility("cloth", abilityList) )
-		var shoeGearName = extractNamesFromArray( filterGearByAbility("shoe", abilityList) )
+		// filterGearByANB( body, ability, brand)
+		
+		var headGearName = extractNamesFromArray( filterGearByANB("head", abilityList, brandList) )
+		// var headGearName = extractNamesFromArray( filterGearByAbility("head", abilityList) )
+		var clothGearName = extractNamesFromArray( filterGearByANB("cloth", abilityList, brandList) )
+		var shoeGearName = extractNamesFromArray( filterGearByANB("shoe", abilityList, brandList) )
 		
 		// show target gears in text form
 		$(".headGear").text( headGearName );
