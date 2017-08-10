@@ -37,6 +37,8 @@ $(document).ready( function() {
 							"Special Saver",		"Stealth Jump",		"Sub Power Up",			"Swim Speed Up",		"Tenacity",
 							"Thermal Ink"
 							]
+							
+	// var brandList 
 	// Functions
 	function visualCheckList(){
 		$("#list").text( abilityCheckList + " ; " + brandCheckList );
@@ -152,13 +154,38 @@ $(document).ready( function() {
 		
 		// alert( 'function is testing' );
 		var numSelection = getSum( abilityCheckList );
-		// alert( "there are " + numSelection + " ability selected");
 		
-		var output = timesBy(abilityCheckList,numSelection);
-		// alert( "the checklist now becomes: " + JSON.stringify(output) );
+		switch( numSelection ) {
+			case 0:
+				//alert("0 abilities chosen") ;
+				var output = timesBy(abilityCheckList,0); // Redundant
+				break;
+			case 1:
+				//alert("1 abilities chosen");
+				var output = timesBy(abilityCheckList,3);
+				break;
+			case 2:
+				//alert("2 abilities chosen");
+				var output = timesBy(abilityCheckList,2);
+				break;
+			case 3:
+				//alert("3 abilities chosen");
+				var output = timesBy(abilityCheckList,1); // Redundant
+				break;
+			default:
+				alert('More than 3 abilities have been chosen, cannot make an outfit!')
+				var output = timesBy(abilityCheckList,0);
+		}
 		
 		return output
 	}
+	
+	function outfit( head, cloth, shoe ) {
+		this.head = head;
+		this.cloth = cloth;
+		this.shoe = shoe;
+	}
+	
 	
 	function chooseGear(abilityList) {
 		
@@ -175,7 +202,7 @@ $(document).ready( function() {
 		
 		alert( "There are " + headGearNum + ", " + clothGearNum + ", " + shoeGearNum + ", " + "gears to choose from");
 		
-		var arrayOfOutfits = [];
+		var arrayOfOutfit = [];
 		
 		for( var i = 0; i < headGearNum; i++ ) {
 			var tempHead = headGearList[i]
@@ -185,14 +212,46 @@ $(document).ready( function() {
 			
 			var currentCheckList1 = initialCheckList.slice();
 			currentCheckList1[ tempHead.getAbilityIndex() ] -= 1;
-			/*
+		
+			// carry on to cloth gear loop
 			for( var j = 0; j < clothGearNum; j++ ) {
 				var tempCloth = clothGearList[j];
 				
-				if( current
+				// check if there is already too many of same ability
+				if( currentCheckList1[ tempCloth.getAbilityIndex() ] > 0 ) {
+					// there are still slots for this ability, add to outfit
+					var currentCheckList2 = currentCheckList1.slice();
+					currentCheckList2[ tempCloth.getAbilityIndex() ] -= 1;
+					
+					// alert("Now has outfit: " + tempHead.name + ", " + tempCloth.name );
+					
+					// carry on to shoe gear loop
+					for( var k = 0; k < shoeGearNum; k++ ) {
+						var tempShoe = shoeGearList[k];
+						
+						//check if there is already too many of same ability
+						if( currentCheckList2[ tempShoe.getAbilityIndex() ] > 0 ) {
+							// enough slot, add
+							var newOutfit = new outfit( tempHead.name, tempCloth.name, tempShoe.name );
+							
+							arrayOfOutfit.push( newOutfit );
+							
+						} else {
+							// not enough slot, reject
+							continue;
+						}
+					}
+					
+					
+				} else {
+					// there are too many this ability, outfit rejected
+					continue;
+				}
 			}
-			*/
+			
 		}
+		
+		return arrayOfOutfit
 			
 	}
 	
@@ -332,7 +391,9 @@ $(document).ready( function() {
 		}
 		
 		// STARTING OUTFIT GENERATION
-		chooseGear(abilityList)
+		var arrayOfOutfit = chooseGear(abilityList);
+		
+		$(".outfit").text( JSON.stringify( arrayOfOutfit ));
 		
 		
 	});
