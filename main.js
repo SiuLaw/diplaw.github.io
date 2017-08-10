@@ -188,7 +188,9 @@ $(document).ready( function() {
 		
 		var abilityList = index2shortName();
 		
-		var shortenGearList = filterHeadGearByAbility(abilityList);
+		var shortenGearList = [];
+		shortenGearList = shortenGearList.concat( filterHeadGearByAbility(abilityList) );
+		
 		
 		$(".gear").addClass("hidden");
 		
