@@ -94,6 +94,7 @@ $(document).ready( function() {
 			filteredArray1 = gearList.slice();
 		}
 		
+		var filteredArray2 = [];
 		// Step 2: filter gear based on desired brand ability
 		if( brand.length > 0 ) {
 			// user has chosen some brand ability, filter gear from previous list: filteredArray1
@@ -276,12 +277,12 @@ $(document).ready( function() {
 					for( var k = 0; k < shoeGearNum; k++ ) {
 						var tempShoe = shoeGearList[k];
 						
+						// alert(extractNamesFromArray(headGearList)+ ";" + extractNamesFromArray(clothGearList) + ";" + extractNamesFromArray(shoeGearList) );
+						
 						//check if there is already too many of same ability
 						if( currentMainList2[ tempShoe.abilityIndex() ] > 0 && currentBrandList2[ tempShoe.brandAbilityIndex() ] > 0 ) {
 							// enough slot, add
-							var newOutfit = new outfit( tempHead.name, tempCloth.name, tempShoe.name );
-							
-							arrayOfOutfit.push( newOutfit );
+							arrayOfOutfit.push( new outfit( tempHead.name, tempCloth.name, tempShoe.name ) );
 							
 						} else {
 							// not enough slot, reject
@@ -407,6 +408,7 @@ $(document).ready( function() {
 	
 	
 	gearList.push( new gear( "Hunter_Hi-Tops","shoe","Krak-On",500,"Ink Recovery Up",1) );
+	gearList.push( new gear( "White_Norimaki_750s","shoe","Tentatek",3800,"Swim Speed Up",2) );
 	
 	// gearList.push( new gear( "","shoe","",0,"",1) );
 	
