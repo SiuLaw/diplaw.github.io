@@ -101,6 +101,12 @@ $(document).ready( function() {
 	function filterGearByANB( body, ability, brand) {		
 		var filteredArray1 = [];
 		
+		// Step 0: check that this is filtering at all, i.e. ability.length and brand.length not BOTH 0
+		if( ability.length === 0 && brand.length === 0 ) {
+			return []
+		}
+		
+		
 		// Step 1: filter gear based on desired main ability
 		if( ability.length > 0 ) {
 			// user has chosen some main ability, filter gear
@@ -242,7 +248,7 @@ $(document).ready( function() {
 	function chooseGear(abilityList,brandList) {
 		
 		var initialMainList =  maxRepeatAbility(abilityCheckList);
-		// var initialBrandList = maxRepeatAbility(brandCheckList);
+		var initialBrandList = maxRepeatAbility(brandCheckList);
 		
 		// NOTE: may add condition to end outfiting early if no abilities are selected;
 		
@@ -435,11 +441,6 @@ $(document).ready( function() {
 	
 		var abilityList = 	index2shortName(abilityCheckList);
 		var brandList = 	index2shortName(brandCheckList);
-		
-		alert( abilityList )
-		alert( brandList )
-		
-		// filterGearByANB( body, ability, brand)
 		
 		var headGearName = extractNamesFromArray( filterGearByANB("head", abilityList, brandList) )
 		var clothGearName = extractNamesFromArray( filterGearByANB("cloth", abilityList, brandList) )
