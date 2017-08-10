@@ -38,11 +38,17 @@ $(document).ready( function() {
 							"Thermal Ink"
 							]
 							
-	var brandList = [		"amiibo", 		"Annaki", 		"Cuttlegear",	"Enperry", 	"Firefin",
-							"Forge", 		"Grizzco", 		"Inkline", 		"Krak-On", 	"Rockenberg", 
-							"Skalop", 		"Splash Mob",	"SquidForce",	"Takoroka",	"Tentatek", 
-							"Toni Kensa",	"Zekko", 		"Zink"
-							]
+	var brandList = [		"amiibo", 			"Annaki", 			"Cuttlegear",			"Enperry", 				"Firefin",
+							"Forge", 			"Grizzco", 			"Inkline", 				"Krak-On", 				"Rockenberg", 
+							"Skalop", 			"Splash Mob",		"SquidForce",			"Takoroka",				"Tentatek", 
+							"Toni Kensa",		"Zekko", 			"Zink"
+							];
+	
+	var brandAbilityList =[	"NONE",				"Cold-Blooded", 	"NONE", 				"Sub Power Up", 		"Ink Saver (Sub)", 
+							"Special Power Up",	"NONE", 			"Bomb Defense Up", 		"Swim Speed Up", 		"Run Speed Up", 
+							"Quick Respawn", 	"Ink Saver (Main)",	"Ink Resistance Up",	"Special Charge Up",	"Ink Recovery Up", 
+							"Cold-Blooded", 	"Special Saver", 	"Quick Super Jump"
+							];
 	
 	// Functions
 	function visualCheckList(){
@@ -91,6 +97,20 @@ $(document).ready( function() {
 		return filteredArray;
 	}
 	
+	// filter any gear by body and ability and brand
+	function filterGearByANB( body, ability, brand) {		
+		var filteredArray = [];
+		
+		for( var i = 0; i < ability.length; i++ ) {
+			filteredArray = filteredArray.concat( gearList.filter( function(el) { 
+				return 	( el.ability === ability[i] || el.brandAbility() === brand[i]) && 
+						el.body === body
+			}));
+		}
+		
+		return filteredArray;
+	}
+	
 	// extract gear names from array of gears
 	function extractNamesFromArray( filteredArray ) {
 		var shortGearList = []
@@ -112,6 +132,10 @@ $(document).ready( function() {
 	
 	gear.prototype.getAbilityIndex = function() {
 		return shortNameList.indexOf( this.ability );
+	}
+	
+	gear.prototype.brandAbility = function() {
+		
 	}
 	
 	
