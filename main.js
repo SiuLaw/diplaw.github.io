@@ -389,6 +389,11 @@ $(document).ready( function() {
 	gearList.push( new gear( "Armor_Jacket_Replica","cloth","Cuttlegear",0,"Special Charge Up",2) );
 	gearList.push( new gear( "B-ball_Jersey_(Away)","cloth","Zink",800,"Ink Saver (Sub)",1) );
 	
+	
+	
+	gearList.push( new gear( "Varsity_Jacket","cloth","Zekko",11500,"Ink Saver (Sub)",3) );
+	
+	
 	// gearList.push( new gear( "","cloth","",0,"",1) );
 	
 	// shoe
@@ -397,6 +402,10 @@ $(document).ready( function() {
 	gearList.push( new gear( "Arrow_Pull-Ons","shoe","Toni Kensa",10000,"Drop Roller",3) );
 	gearList.push( new gear( "Birch_Climbing_Shoes","shoe","Inkline",1200,"Special Charge Up",1) );
 	gearList.push( new gear( "Black_Dakroniks","shoe","Zink",1500,"Cold-Blooded",2) );
+	
+	
+	
+	gearList.push( new gear( "Hunter_Hi-Tops","shoe","Krak-On",500,"Ink Recovery Up",1) );
 	
 	// gearList.push( new gear( "","shoe","",0,"",1) );
 	
