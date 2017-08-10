@@ -44,15 +44,15 @@ $(document).ready( function() {
 	
 	
 	// filter head gear by ability
-	function filterHeadGearByAbility( abilities ) {
+	function filterHeadGearByAbility( ability ) {
 		
 		var filteredArray = [];
-		// alert("There are " + abilities.length + " abilities need filtering.")
+		// alert("There are " + ability.length + " ability need filtering.")
 		
-		for( var i = 0; i < abilities.length; i++ ) {
-			// alert( abilities[i] );
+		for( var i = 0; i < ability.length; i++ ) {
+			// alert( ability[i] );
 			filteredArray = filteredArray.concat( gearList.filter( function(el) { 
-				return 	el.ability === abilities[i] &&
+				return 	el.ability === ability[i] &&
 						el.body === "head"
 			}));
 		}
@@ -71,23 +71,27 @@ $(document).ready( function() {
 	
 	
 	// filter any gear by body and ability
-	function filterGearByAbility( body, abilities ) {		
+	function filterGearByAbility( body, ability ) {		
 		var filteredArray = [];
 		
-		for( var i = 0; i < abilities.length; i++ ) {
+		for( var i = 0; i < ability.length; i++ ) {
 			filteredArray = filteredArray.concat( gearList.filter( function(el) { 
-				return 	el.ability === abilities[i] &&
+				return 	el.ability === ability[i] &&
 						el.body === body
 			}));
 		}
 		
+		return filteredArray;
+	}
+	
+	// extract gear names from array of gears
+	function extractNamesFromArray( filteredArray ) {
 		var shortGearList = []
 		filteredArray.forEach( function( arrayItem ) {
 			shortGearList.push( arrayItem.name );
 		});
 		return( shortGearList );
 	}
-		
 	
 	// gear constructor
 	function gear( name, body, brand, price, ability, rarity) {
@@ -97,6 +101,10 @@ $(document).ready( function() {
 		this.price = price;
 		this.ability = ability;
 		this.rarity = rarity;
+	}
+	
+	gear.prototype.getAbilityIndex = function() {
+		return shortNameList.indexOf( this.ability );
 	}
 	
 	
@@ -111,31 +119,84 @@ $(document).ready( function() {
 		return resultList;
 	}
 	
+	// Array manipulations
+	
+	// function to get sum
+	function add2sum(x,y) {
+		return x + y
+	}
+	
+	// function to get array sum
+	function getSum(array) {
+		return array.reduce( add2sum );
+	}
+	
+	// function to multiply array with scalar
+	function timesBy( array, constant ) {
+		return array.map( function(x) { return x * constant;} );
+	}
+	
 	// combination generator
-	// 1. choose the maximum repeating ability based on the number of selected abilities
+	// 1. choose the maximum repeating ability based on the number of selected ability
 	// 2. choose first gear ( possibly the body part with the least amount of gear first / PROBABLY NOT )
-	// 3. then update remaining abilities based on list in step 1
+	// 3. then update remaining ability based on list in step 1
 	// 4. choose second gear from second body part
-	// 5. update remaining abilities
+	// 5. update remaining ability
 	// 6. choose last gear
 	// 7. print gear combination
 	// 8. start from step 2 until first body part is exhausted
 
 	
-	function maxRepeatAbility( checkList ) {
+	function maxRepeatAbility(  ) {
 		// output a modified checkList that reflects the maximum amount of repeats
 		
-		alert( 'function is testing' );
-		var numSelection = Math.sum( checkList );
-		alert( numSelection );
+		// alert( 'function is testing' );
+		var numSelection = getSum( abilityCheckList );
+		// alert( "there are " + numSelection + " ability selected");
 		
-		var output = checkList * numSelection;
-		alert( output );
+		var output = timesBy(abilityCheckList,numSelection);
+		// alert( "the checklist now becomes: " + JSON.stringify(output) );
 		
 		return output
 	}
 	
-	// fun
+	function chooseGear(abilityList) {
+		
+		var initialCheckList = maxRepeatAbility();
+		alert( JSON.stringify( initialCheckList ) );
+		
+		var headGearList = filterGearByAbility("head", abilityList);
+		var clothGearList = filterGearByAbility("cloth", abilityList);
+		var shoeGearList = filterGearByAbility("shoe", abilityList);
+		
+		var headGearNum = headGearList.length;
+		var clothGearNum = clothGearList.length;
+		var shoeGearNum = shoeGearList.length;
+		
+		alert( "There are " + headGearNum + ", " + clothGearNum + ", " + shoeGearNum + ", " + "gears to choose from");
+		
+		var arrayOfOutfits = [];
+		
+		for( var i = 0; i < headGearNum; i++ ) {
+			var tempHead = headGearList[i]
+			
+			// alert( "First gear is " + tempHead.name );
+			// alert( "This gear has ability " + tempHead.ability + " with index " + tempHead.getAbilityIndex() );
+			
+			var currentCheckList1 = initialCheckList.slice();
+			currentCheckList1[ tempHead.getAbilityIndex() ] -= 1;
+			/*
+			for( var j = 0; j < clothGearNum; j++ ) {
+				var tempCloth = clothGearList[j];
+				
+				if( current
+			}
+			*/
+		}
+			
+	}
+	
+	
 		
 	
 	
@@ -227,11 +288,11 @@ $(document).ready( function() {
 	// gearList.push( new gear( "","cloth","",0,"",1) );
 	
 	// shoe
-	gearList.push( new gear( "Acerola Rain Boots","shoe","Inkline",600,"Run Speed Up",1) );
-	gearList.push( new gear( "Armor Boot Replicas","shoe","Cuttlegear",0,"Ink Saver (Main)",2) );
-	gearList.push( new gear( "Arrow Pull-Ons","shoe","Toni Kensa",10000,"Drop Roller",3) );
-	gearList.push( new gear( "Birch Climbing Shoes","shoe","Inkline",1200,"Special Charge Up",1) );
-	gearList.push( new gear( "Black Dakroniks","shoe","Zink",1500,"Cold-Blooded",2) );
+	gearList.push( new gear( "Acerola_Rain_Boots","shoe","Inkline",600,"Run Speed Up",1) );
+	gearList.push( new gear( "Armor_Boot_Replicas","shoe","Cuttlegear",0,"Ink Saver (Main)",2) );
+	gearList.push( new gear( "Arrow_Pull-Ons","shoe","Toni Kensa",10000,"Drop Roller",3) );
+	gearList.push( new gear( "Birch_Climbing_Shoes","shoe","Inkline",1200,"Special Charge Up",1) );
+	gearList.push( new gear( "Black_Dakroniks","shoe","Zink",1500,"Cold-Blooded",2) );
 	
 	// gearList.push( new gear( "","shoe","",0,"",1) );
 	
@@ -245,34 +306,33 @@ $(document).ready( function() {
 		
 		var abilityList = index2shortName();
 		
-		var shortenGearList = [];
-		
-		var headGearList = filterGearByAbility("head", abilityList)
-		var clothGearList = filterGearByAbility("cloth", abilityList)
-		var shoeGearList = filterGearByAbility("shoe", abilityList)
-		
-		shortenGearList = shortenGearList.concat( headGearList );
-		shortenGearList = shortenGearList.concat( clothGearList );
-		shortenGearList = shortenGearList.concat( shoeGearList );
+		var headGearName = extractNamesFromArray( filterGearByAbility("head", abilityList) )
+		var clothGearName = extractNamesFromArray( filterGearByAbility("cloth", abilityList) )
+		var shoeGearName = extractNamesFromArray( filterGearByAbility("shoe", abilityList) )
 		
 		// show target gears in text form
-		$(".headGear").text( headGearList )
-		$(".clothGear").text( clothGearList )
-		$(".shoeGear").text( shoeGearList )
+		$(".headGear").text( headGearName );
+		$(".clothGear").text( clothGearName );
+		$(".shoeGear").text( shoeGearName );
 		
+		// make a list of gear names for visualizing gears
+		var shortenGearName = [];
+		shortenGearName = shortenGearName.concat( headGearName );
+		shortenGearName = shortenGearName.concat( clothGearName );
+		shortenGearName = shortenGearName.concat( shoeGearName );
 		
 		// first hide all gear
 		$(".gear").addClass("hidden");
 		
 		// then un-hide the target gears
-		for( var i=0; i < shortenGearList.length; i++) {
+		for( var i=0; i < shortenGearName.length; i++) {
 			
-			var idString = "#" + shortenGearList[i];
+			var idString = "#" + shortenGearName[i];
 			$(idString).removeClass("hidden");
 		}
 		
 		// STARTING OUTFIT GENERATION
-		maxRepeatAbility( abilityCheckList );
+		chooseGear(abilityList)
 		
 		
 	});
