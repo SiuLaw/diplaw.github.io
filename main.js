@@ -104,12 +104,40 @@ $(document).ready( function() {
 	function index2shortName() {
 		var resultList = [];
 		for( var i = 0; i < abilityCheckList.length; i++ ) {
-			if( abilityCheckList[i] === 1 ) {
+			if( abilityCheckList[i] > 0 ) {
 				resultList.push( shortNameList[i] );
 			}
 		}
 		return resultList;
 	}
+	
+	// combination generator
+	// 1. choose the maximum repeating ability based on the number of selected abilities
+	// 2. choose first gear ( possibly the body part with the least amount of gear first / PROBABLY NOT )
+	// 3. then update remaining abilities based on list in step 1
+	// 4. choose second gear from second body part
+	// 5. update remaining abilities
+	// 6. choose last gear
+	// 7. print gear combination
+	// 8. start from step 2 until first body part is exhausted
+
+	
+	function maxRepeatAbility( checkList ) {
+		// output a modified checkList that reflects the maximum amount of repeats
+		
+		alert( 'function is testing' );
+		var numSelection = Math.sum( checkList );
+		alert( numSelection );
+		
+		var output = checkList * numSelection;
+		alert( output );
+		
+		return output
+	}
+	
+	// fun
+		
+	
 	
 	
 	var gearList = [];
@@ -242,6 +270,9 @@ $(document).ready( function() {
 			var idString = "#" + shortenGearList[i];
 			$(idString).removeClass("hidden");
 		}
+		
+		// STARTING OUTFIT GENERATION
+		maxRepeatAbility( abilityCheckList );
 		
 		
 	});
