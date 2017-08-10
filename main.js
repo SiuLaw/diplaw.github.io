@@ -99,16 +99,25 @@ $(document).ready( function() {
 	
 	// filter any gear by body and ability and brand
 	function filterGearByANB( body, ability, brand) {		
-		var filteredArray = [];
+		var filteredArray1 = [];
 		
-		for( var i = 0; i < ability.length; i++ ) {
-			filteredArray = filteredArray.concat( gearList.filter( function(el) { 
-				return 	( el.ability === ability[i] || el.brandAbility() === brand[i]) && 
-						el.body === body
-			}));
+		// Step 1: filter gear based on desired main ability
+		if( ability.length > 0 ) {
+			// user has chosen some main ability, filter gear
+			for( var i = 0; i < ability.length; i++ ) {
+				filteredArray1 = filteredArray1.concat( gearList.filter( function(el) { 
+					return 	el.ability === ability[i] && 
+							el.body === body
+				}));
+			}
+		} else {
+			// user has not chosen any main ability, return same gear list as original
+			filteredArray1 = gearList.slice();
 		}
 		
-		return filteredArray;
+		
+		
+		return filteredArray1;
 	}
 	
 	// extract gear names from array of gears
@@ -136,14 +145,16 @@ $(document).ready( function() {
 	
 	gear.prototype.brandAbility = function() {
 		
+		
+		return 
 	}
 	
 	
 	// index to short name
-	function index2shortName() {
+	function index2shortName( list ) {
 		var resultList = [];
-		for( var i = 0; i < abilityCheckList.length; i++ ) {
-			if( abilityCheckList[i] > 0 ) {
+		for( var i = 0; i < list.length; i++ ) {
+			if( list[i] > 0 ) {
 				resultList.push( shortNameList[i] );
 			}
 		}
@@ -392,9 +403,31 @@ $(document).ready( function() {
 		$(this).toggleClass("highlightA");
 		var selectedIndex = abilityNameList.indexOf( $(this).attr("id") );
 		abilityCheckList[selectedIndex] = ( abilityCheckList[selectedIndex] + 1 ) % 2;
-		visualCheckList();
+
+		updateAfterClick();
 		
-		var abilityList = index2shortName();
+	});
+	
+	// On clicking brand icons
+	$(".brand").on("click", function() {
+		$(this).toggleClass("highlightB");
+		var selectedIndex = brandNameList.indexOf( $(this).attr("id") );
+		brandCheckList[selectedIndex] = ( brandCheckList[selectedIndex] + 1 ) % 2;
+		
+		updateAfterClick();
+		
+	});
+	
+	// The update process
+	function updateAfterClick() {
+	
+		visualCheckList();
+	
+		var abilityList = 	index2shortName(abilityCheckList);
+		var brandList = 	index2shortName(brandCheckList);
+		
+		alert( abilityList )
+		alert( brandList )
 		
 		var headGearName = extractNamesFromArray( filterGearByAbility("head", abilityList) )
 		var clothGearName = extractNamesFromArray( filterGearByAbility("cloth", abilityList) )
@@ -425,16 +458,7 @@ $(document).ready( function() {
 		var arrayOfOutfit = chooseGear(abilityList);
 		
 		$(".outfit").text( JSON.stringify( arrayOfOutfit ));
-		
-		
-	});
 	
-	// On clicking brand icons
-	$(".brand").on("click", function() {
-		$(this).toggleClass("highlightB");
-		var selectedIndex = brandNameList.indexOf( $(this).attr("id") );
-		brandCheckList[selectedIndex] = ( brandCheckList[selectedIndex] + 1 ) % 2;
-		visualCheckList();
-	});
+	}
 	
 });
