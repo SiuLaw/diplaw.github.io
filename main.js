@@ -130,7 +130,7 @@ $(document).ready( function() {
 		this.rarity = rarity;
 	}
 	
-	gear.prototype.getAbilityIndex = function() {
+	gear.prototype.abilityIndex = function() {
 		return shortNameList.indexOf( this.ability );
 	}
 	
@@ -139,6 +139,10 @@ $(document).ready( function() {
 		var id = brandList.indexOf( this.brand ) 
 		
 		return brandAbilityList[id]
+	}
+	
+	gear.prototype.brandAbilityIndex = function() {
+		return shortNameList.indexOf( this.brandAbility() );
 	}
 	
 	
@@ -170,6 +174,10 @@ $(document).ready( function() {
 		return array.map( function(x) { return x * constant;} );
 	}
 	
+	function replaceBy( array, constant ) {
+		return array.map( function(x) { return constant } );
+	}
+	
 	// combination generator
 	// 1. choose the maximum repeating ability based on the number of selected ability
 	// 2. choose first gear ( possibly the body part with the least amount of gear first / PROBABLY NOT )
@@ -190,7 +198,7 @@ $(document).ready( function() {
 		switch( numSelection ) {
 			case 0:
 				//alert("0 abilities chosen") ;
-				var output = timesBy(list,0); // Redundant
+				var output = replaceBy(list,3); // If there are no filters in the first place, then no need to restrict the abilities at all
 				break;
 			case 1:
 				//alert("1 abilities chosen");
@@ -241,20 +249,26 @@ $(document).ready( function() {
 			var tempHead = headGearList[i]
 			
 			// alert( "First gear is " + tempHead.name );
-			// alert( "This gear has ability " + tempHead.ability + " with index " + tempHead.getAbilityIndex() );
+			// alert( "This gear has ability " + tempHead.ability + " with index " + tempHead.abilityIndex() );
 			
-			var currentMainList1 = initialMainList.slice();
-			currentMainList1[ tempHead.getAbilityIndex() ] -= 1;
+			var currentMainList1  = initialMainList.slice();
+			var currentBrandList1 = initialBrandList.slice();
+			
+			currentMainList1[ tempHead.abilityIndex() ] -= 1;
+			currentBrandList1[ tempHead.brandAbilityIndex() ] -= 1;
 		
 			// carry on to cloth gear loop
 			for( var j = 0; j < clothGearNum; j++ ) {
 				var tempCloth = clothGearList[j];
 				
 				// check if there is already too many of same ability
-				if( currentMainList1[ tempCloth.getAbilityIndex() ] > 0 ) {
+				if( currentMainList1[ tempCloth.abilityIndex() ] > 0 && currentBrandList1[ tempCloth.brandAbilityIndex() ] > 0 ) {
 					// there are still slots for this ability, add to outfit
 					var currentMainList2 = currentMainList1.slice();
-					currentMainList2[ tempCloth.getAbilityIndex() ] -= 1;
+					var currentBrandList2 = currentBrandList1.slice();
+					
+					currentMainList2[ tempCloth.abilityIndex() ] -= 1;
+					currentBrandList2[ tempCloth.brandAbilityIndex() ] -= 1;
 					
 					// alert("Now has outfit: " + tempHead.name + ", " + tempCloth.name );
 					
@@ -263,7 +277,7 @@ $(document).ready( function() {
 						var tempShoe = shoeGearList[k];
 						
 						//check if there is already too many of same ability
-						if( currentMainList2[ tempShoe.getAbilityIndex() ] > 0 ) {
+						if( currentMainList2[ tempShoe.abilityIndex() ] > 0 && currentBrandList2[ tempShoe.brandAbilityIndex() ] > 0 ) {
 							// enough slot, add
 							var newOutfit = new outfit( tempHead.name, tempCloth.name, tempShoe.name );
 							
