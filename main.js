@@ -241,8 +241,8 @@ $(document).ready( function() {
 	
 	function chooseGear(abilityList,brandList) {
 		
-		var initialCheckList = maxRepeatAbility(abilityCheckList);
-		// alert( JSON.stringify( initialCheckList ) );
+		var initialMainList =  maxRepeatAbility(abilityCheckList);
+		// var initialBrandList = maxRepeatAbility(brandCheckList);
 		
 		// NOTE: may add condition to end outfiting early if no abilities are selected;
 		
@@ -264,18 +264,18 @@ $(document).ready( function() {
 			// alert( "First gear is " + tempHead.name );
 			// alert( "This gear has ability " + tempHead.ability + " with index " + tempHead.getAbilityIndex() );
 			
-			var currentCheckList1 = initialCheckList.slice();
-			currentCheckList1[ tempHead.getAbilityIndex() ] -= 1;
+			var currentMainList1 = initialMainList.slice();
+			currentMainList1[ tempHead.getAbilityIndex() ] -= 1;
 		
 			// carry on to cloth gear loop
 			for( var j = 0; j < clothGearNum; j++ ) {
 				var tempCloth = clothGearList[j];
 				
 				// check if there is already too many of same ability
-				if( currentCheckList1[ tempCloth.getAbilityIndex() ] > 0 ) {
+				if( currentMainList1[ tempCloth.getAbilityIndex() ] > 0 ) {
 					// there are still slots for this ability, add to outfit
-					var currentCheckList2 = currentCheckList1.slice();
-					currentCheckList2[ tempCloth.getAbilityIndex() ] -= 1;
+					var currentMainList2 = currentMainList1.slice();
+					currentMainList2[ tempCloth.getAbilityIndex() ] -= 1;
 					
 					// alert("Now has outfit: " + tempHead.name + ", " + tempCloth.name );
 					
@@ -284,7 +284,7 @@ $(document).ready( function() {
 						var tempShoe = shoeGearList[k];
 						
 						//check if there is already too many of same ability
-						if( currentCheckList2[ tempShoe.getAbilityIndex() ] > 0 ) {
+						if( currentMainList2[ tempShoe.getAbilityIndex() ] > 0 ) {
 							// enough slot, add
 							var newOutfit = new outfit( tempHead.name, tempCloth.name, tempShoe.name );
 							
