@@ -83,7 +83,7 @@ $(document).ready( function() {
 	}
 	
 	
-	// filter any gear by body and ability
+	// filter any gear by body and ability ( MAY BE OUTDATE )
 	function filterGearByAbility( body, ability ) {		
 		var filteredArray = [];
 		
@@ -239,16 +239,16 @@ $(document).ready( function() {
 		this.shoe = shoe;
 	}
 	
-	function chooseGear(abilityList) {
+	function chooseGear(abilityList,brandList) {
 		
 		var initialCheckList = maxRepeatAbility();
 		// alert( JSON.stringify( initialCheckList ) );
 		
 		// NOTE: may add condition to end outfiting early if no abilities are selected;
 		
-		var headGearList = filterGearByAbility("head", abilityList);
-		var clothGearList = filterGearByAbility("cloth", abilityList);
-		var shoeGearList = filterGearByAbility("shoe", abilityList);
+		var headGearList = filterGearByANB("head", abilityList, brandList);
+		var clothGearList = filterGearByANB("cloth", abilityList, brandList);
+		var shoeGearList = filterGearByANB("shoe", abilityList, brandList);
 		
 		var headGearNum = headGearList.length;
 		var clothGearNum = clothGearList.length;
@@ -442,7 +442,6 @@ $(document).ready( function() {
 		// filterGearByANB( body, ability, brand)
 		
 		var headGearName = extractNamesFromArray( filterGearByANB("head", abilityList, brandList) )
-		// var headGearName = extractNamesFromArray( filterGearByAbility("head", abilityList) )
 		var clothGearName = extractNamesFromArray( filterGearByANB("cloth", abilityList, brandList) )
 		var shoeGearName = extractNamesFromArray( filterGearByANB("shoe", abilityList, brandList) )
 		
@@ -468,7 +467,7 @@ $(document).ready( function() {
 		}
 		
 		// STARTING OUTFIT GENERATION
-		var arrayOfOutfit = chooseGear(abilityList);
+		var arrayOfOutfit = chooseGear(abilityList,brandList);
 		
 		$(".outfit").text( JSON.stringify( arrayOfOutfit ));
 	
