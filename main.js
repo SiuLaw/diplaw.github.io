@@ -56,33 +56,6 @@ $(document).ready( function() {
 	}
 	
 	
-	// filter head gear by ability
-	function filterHeadGearByAbility( ability ) {
-		
-		var filteredArray = [];
-		// alert("There are " + ability.length + " ability need filtering.")
-		
-		for( var i = 0; i < ability.length; i++ ) {
-			// alert( ability[i] );
-			filteredArray = filteredArray.concat( gearList.filter( function(el) { 
-				return 	el.ability === ability[i] &&
-						el.body === "head"
-			}));
-		}
-		
-		var headGearList = []
-		filteredArray.forEach( function( arrayItem ) {
-			// alert( arrayItem.name );
-			headGearList.push( arrayItem.name );
-		});
-		$(".headGear").text( headGearList );
-		
-		// if( filteredArray.length === 0 ) { alert( " There are no matching head gears" ) };
-		
-		return( headGearList );
-	}
-	
-	
 	// filter any gear by body and ability ( MAY BE OUTDATE )
 	function filterGearByAbility( body, ability ) {		
 		var filteredArray = [];
