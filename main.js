@@ -38,7 +38,12 @@ $(document).ready( function() {
 							"Thermal Ink"
 							]
 							
-	// var brandList 
+	var brandList = [		"amiibo", 		"Annaki", 		"Cuttlegear",	"Enperry", 	"Firefin",
+							"Forge", 		"Grizzco", 		"Inkline", 		"Krak-On", 	"Rockenberg", 
+							"Skalop", 		"Splash Mob",	"SquidForce",	"Takoroka",	"Tentatek", 
+							"Toni Kensa",	"Zekko", 		"Zink"
+							]
+	
 	// Functions
 	function visualCheckList(){
 		$("#list").text( abilityCheckList + " ; " + brandCheckList );
@@ -190,7 +195,9 @@ $(document).ready( function() {
 	function chooseGear(abilityList) {
 		
 		var initialCheckList = maxRepeatAbility();
-		alert( JSON.stringify( initialCheckList ) );
+		// alert( JSON.stringify( initialCheckList ) );
+		
+		// NOTE: may add condition to end outfiting early if no abilities are selected;
 		
 		var headGearList = filterGearByAbility("head", abilityList);
 		var clothGearList = filterGearByAbility("cloth", abilityList);
@@ -200,7 +207,7 @@ $(document).ready( function() {
 		var clothGearNum = clothGearList.length;
 		var shoeGearNum = shoeGearList.length;
 		
-		alert( "There are " + headGearNum + ", " + clothGearNum + ", " + shoeGearNum + ", " + "gears to choose from");
+		// alert( "There are " + headGearNum + ", " + clothGearNum + ", " + shoeGearNum + ", " + "gears to choose from");
 		
 		var arrayOfOutfit = [];
 		
