@@ -114,7 +114,7 @@ $(document).ready( function() {
 	gearList.push( new gear( "Fake_Contacts",		"head",	"Tentatek",	2000,	"Special Charge Up",	2) );
 	gearList.push( new gear( "Firefin_Facemask",	"head", "Firefin",	650,	"Run Speed Up", 		1) ); 
 	
-	gearList.push( new gear( "FishFly_Visor",			"head", 	"Firefin", 		500,	"Special Charge Up",	1) );
+	gearList.push( new gear( "FishFry_Visor",			"head", 	"Firefin", 		500,	"Special Charge Up",	1) );
 	gearList.push( new gear( "Five-Panel_Cap",			"head", 	"Zekko", 		1800,	"Comeback",				2) );
 	gearList.push( new gear( "Half-Rim_Glasses",		"head", 	"Splash Mob",	4100,	"Special Power Up",		2) );
 	gearList.push( new gear( "Hero_Headphones_Replica",	"head", 	"Cuttlegear", 	0, 		"Special Saver", 		2) );
@@ -135,19 +135,25 @@ $(document).ready( function() {
 	gearList.push( new gear( "Painters_Mask","head", "SquidForce", 4500, "Cold-Blooded", 2) );
 	gearList.push( new gear( "Patched_Hat", "head", "Skalop", 3600, "Cold-Blooded", 2) );
 	gearList.push( new gear( "Pilot_Goggles", "head", "Forge", 5500, "Sub Power Up", 2) );
+	gearList.push( new gear( "Power_Mask", "head", "amiibo", 0, "Bomb Defense Up", 2) );
 	
+	gearList.push( new gear( "Power_Mask_Mk_I", "head", "amiibo", 0, "Ink Resistance Up", 2) );
 	gearList.push( new gear( "Retro_Specs", "head", "Splash Mob", 500, "Quick Respawn", 1) );
 	gearList.push( new gear( "Safari_Hat", "head", "Forge", 2300, "Last-Ditch Effort", 2) );
+	gearList.push( new gear( "Samurai_Helmet", "head", "amiibo", 0, "Quick Super Jump", 2) );
 	gearList.push( new gear( "Skull_Bandana", "head", "Forge", 7800, "Special Saver", 3) );
 	
 	gearList.push( new gear( "Snorkel_Mask", "head", "Forge", 3000, "Ink Saver (Sub)", 2) );
 	gearList.push( new gear( "Soccer_Headband", "head", "Tentatek", 3000, "Tenacity", 2) );
 	gearList.push( new gear( "Special_Forces_Beret","head","Forge",9700, "Opening Gambit", 3) );
 	gearList.push( new gear( "Squash_Headband","head","Zink",400, "Special Saver", 1) );
+	gearList.push( new gear( "Squinja_Mask","head","amiibo",0, "Quick Respawn", 2) );
 	
+	gearList.push( new gear( "Squid_Clip-Ons","head","amiibo",0, "Opening Gambit", 2) );
 	gearList.push( new gear( "Squid_Facemask","head","SquidForce",300,"Ink Saver (Main)", 1) );
 	gearList.push( new gear( "Squidfin_Hook_Cans","head","Forge",3800,"Ink Resistance Up", 2) );
 	gearList.push( new gear( "Squidvader_Cap","head","Skalop",1300,"Special Charge Up", 1) );
+	gearList.push( new gear( "Squid_Hairclip","head","amiibo",0,"Swim Speed Up", 2) );
 	
 	gearList.push( new gear( "Straw_Boater","head","Skalop",550,"Quick Super Jump", 1) );
 	gearList.push( new gear( "Striped_Beanie","head","Splash Mob",900,"Opening Gambit", 1) );
