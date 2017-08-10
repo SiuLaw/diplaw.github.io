@@ -68,6 +68,25 @@ $(document).ready( function() {
 		
 		return( headGearList );
 	}
+	
+	
+	// filter any gear by body and ability
+	function filterGearByAbility( body, abilities ) {		
+		var filteredArray = [];
+		
+		for( var i = 0; i < abilities.length; i++ ) {
+			filteredArray = filteredArray.concat( gearList.filter( function(el) { 
+				return 	el.ability === abilities[i] &&
+						el.body === body
+			}));
+		}
+		
+		var shortGearList = []
+		filteredArray.forEach( function( arrayItem ) {
+			shortGearList.push( arrayItem.name );
+		});
+		return( shortGearList );
+	}
 		
 	
 	// gear constructor
@@ -171,11 +190,11 @@ $(document).ready( function() {
 	
 	
 	// cloth
-	gearList.push( new gear( "Anchor Sweat","cloth","SquidForce",2,800,"Cold-Blooded",2) );
-	gearList.push( new gear( "Annaki Drive Tee","cloth","Annaki",0,"",1) );
-	gearList.push( new gear( "Annaki Evolution Tee","cloth","Annaki",0,"",1) );
-	gearList.push( new gear( "Armor Jacket Replica","cloth","Cuttlegear",0,"",1) );
-	gearList.push( new gear( "B-ball Jersey (Away)","cloth","Zink",0,"",1) );
+	gearList.push( new gear( "Anchor_Sweat","cloth","SquidForce",2800,"Cold-Blooded",2) );
+	gearList.push( new gear( "Annaki_Drive Tee","cloth","Annaki",5500,"Thermal Ink",2) );
+	gearList.push( new gear( "Annaki_Evolution_Tee","cloth","Annaki",8800,"Respawn Punisher",3) );
+	gearList.push( new gear( "Armor_Jacket_Replica","cloth","Cuttlegear",0,"Special Charge Up",2) );
+	gearList.push( new gear( "B-ball_Jersey_(Away)","cloth","Zink",800,"Ink Saver (Sub)",1) );
 	
 	
 	
@@ -189,7 +208,17 @@ $(document).ready( function() {
 		var abilityList = index2shortName();
 		
 		var shortenGearList = [];
-		shortenGearList = shortenGearList.concat( filterHeadGearByAbility(abilityList) );
+		
+		var headGearList = filterGearByAbility("head", abilityList)
+		var bodyGearList = filterGearByAbility("cloth", abilityList)
+		
+		shortenGearList = shortenGearList.concat( headGearList );
+		shortenGearList = shortenGearList.concat( bodyGearList );
+		
+		$(".headGear").text( headGearList )
+		$(".clothGear").text( bodyGearList )
+		
+		
 		
 		
 		$(".gear").addClass("hidden");
