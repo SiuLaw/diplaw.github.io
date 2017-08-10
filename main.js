@@ -248,8 +248,8 @@ $(document).ready( function() {
 		for( var i = 0; i < headGearNum; i++ ) {
 			var tempHead = headGearList[i]
 			
-			// alert( "First gear is " + tempHead.name );
-			// alert( "This gear has ability " + tempHead.ability + " with index " + tempHead.abilityIndex() );
+			//alert( "First gear is " + tempHead.name );
+			//alert( "This gear has ability " + tempHead.ability + " with index " + tempHead.abilityIndex() + " and " + tempHead.brandAbilityIndex() );
 			
 			var currentMainList1  = initialMainList.slice();
 			var currentBrandList1 = initialBrandList.slice();
@@ -387,7 +387,8 @@ $(document).ready( function() {
 	gearList.push( new gear( "Annaki_Drive Tee","cloth","Annaki",5500,"Thermal Ink",2) );
 	gearList.push( new gear( "Annaki_Evolution_Tee","cloth","Annaki",8800,"Respawn Punisher",3) );
 	gearList.push( new gear( "Armor_Jacket_Replica","cloth","Cuttlegear",0,"Special Charge Up",2) );
-	gearList.push( new gear( "B-ball_Jersey_(Away)","cloth","Zink",800,"Ink Saver (Sub)",1) );
+	// gearList.push( new gear( "B-ball_Jersey_(Away)","cloth","Zink",800,"Ink Saver (Sub)",1) );
+	gearList.push( new gear( "B-ball_Jersey_Away","cloth","Zink",800,"Ink Saver (Sub)",1) );
 	
 	
 	
@@ -452,6 +453,8 @@ $(document).ready( function() {
 		shortenGearName = shortenGearName.concat( headGearName );
 		shortenGearName = shortenGearName.concat( clothGearName );
 		shortenGearName = shortenGearName.concat( shoeGearName );
+		
+		
 		
 		// first hide all gear
 		$(".gear").addClass("hidden");
