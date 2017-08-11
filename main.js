@@ -86,7 +86,7 @@ $(document).ready( function() {
 			for( var i = 0; i < ability.length; i++ ) {
 				filteredArray1 = filteredArray1.concat( gearList.filter( function(el) { 
 					return 	el.ability === ability[i] && 
-							el.body === body
+							body.indexOf( el.body ) != -1;
 				}));
 			}
 		} else {
@@ -100,8 +100,7 @@ $(document).ready( function() {
 			// user has chosen some brand ability, filter gear from previous list: filteredArray1
 			for( var i = 0; i < brand.length; i++ ) {
 				filteredArray2 = filteredArray2.concat( filteredArray1.filter( function(el) { 
-					return 	el.brandAbility() === brand[i] && 
-							el.body === body
+					return 	el.brandAbility() === brand[i]
 				}));
 			}
 		} else {
@@ -227,6 +226,15 @@ $(document).ready( function() {
 		this.shoe = shoe;
 	}
 	
+	
+	function suggestMains(abilityList,brandList) {
+		// this is used when a brand is clicked, and then this hides the main abilities that are no longer avaliable
+		
+		// var remainingGear = filterGearByANB( *, abilityList, brandList)
+		// alert( JSON.stringify(extractNamesFromArray( remainingGear )) )
+		
+	}
+	
 	function chooseGear(abilityList,brandList) {
 		
 		var initialMainList =  maxRepeatAbility(abilityCheckList);
@@ -234,9 +242,9 @@ $(document).ready( function() {
 		
 		// NOTE: may add condition to end outfiting early if no abilities are selected;
 		
-		var headGearList = filterGearByANB("head", abilityList, brandList);
-		var clothGearList = filterGearByANB("cloth", abilityList, brandList);
-		var shoeGearList = filterGearByANB("shoe", abilityList, brandList);
+		var headGearList = filterGearByANB(["head"], abilityList, brandList);
+		var clothGearList = filterGearByANB(["cloth"], abilityList, brandList);
+		var shoeGearList = filterGearByANB(["shoe"], abilityList, brandList);
 		
 		var headGearNum = headGearList.length;
 		var clothGearNum = clothGearList.length;
@@ -507,9 +515,11 @@ $(document).ready( function() {
 		var abilityList = 	index2shortName(abilityCheckList);
 		var brandList = 	index2shortName(brandCheckList);
 		
-		var headGearName = extractNamesFromArray( filterGearByANB("head", abilityList, brandList) )
-		var clothGearName = extractNamesFromArray( filterGearByANB("cloth", abilityList, brandList) )
-		var shoeGearName = extractNamesFromArray( filterGearByANB("shoe", abilityList, brandList) )
+		suggestMains(abilityList,brandList);
+		
+		var headGearName = extractNamesFromArray( filterGearByANB(["head"], abilityList, brandList) )
+		var clothGearName = extractNamesFromArray( filterGearByANB(["cloth"], abilityList, brandList) )
+		var shoeGearName = extractNamesFromArray( filterGearByANB(["shoe"], abilityList, brandList) )
 		
 		// show target gears in text form
 		$(".headGear").text( headGearName );
