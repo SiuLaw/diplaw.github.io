@@ -219,7 +219,7 @@ $(document).ready( function() {
 				break;
 			default:
 				//alert('More than 3 ability have been chosen, cannot make an outfit!')
-				var output = timesBy(list,0);
+				var output = timesBy(list,1);
 		}
 		
 		return output
@@ -549,45 +549,104 @@ $(document).ready( function() {
 	gearList.push( new gear( "Choco_Layered_LS","cloth","Takoroka",1400,"Ink Saver Sub",1) );
 	gearList.push( new gear( "Crimson_Parashooter","cloth","Annaki",9200,"Special Charge Up",3) );
 	
-	gearList.push( new gear( "Cycle_King_Jersey","cloth","Tentatek",8,900,"Bomb Defense Up",3) );
-	gearList.push( new gear( "Dark_Urban_Vest","cloth","Firefin",10,000,"Cold-Blooded",3) );
-	gearList.push( new gear( "Eggplant_Mountain_Coat","cloth","Inkline",7,600,"Special Saver",3) );
-	gearList.push( new gear( "FA-01_Jacket","cloth","Forge",10,100,"Ink Recovery Up",3) );
-	gearList.push( new gear( "FA-01_Reversed","cloth","Forge",10,100,"Quick Super Jump",3) );
+	gearList.push( new gear( "Cycle_King_Jersey","cloth","Tentatek",8900,"Bomb Defense Up",3) );
+	gearList.push( new gear( "Dark_Urban_Vest","cloth","Firefin",10000,"Cold-Blooded",3) );
+	gearList.push( new gear( "Eggplant_Mountain_Coat","cloth","Inkline",7600,"Special Saver",3) );
+	gearList.push( new gear( "FA-01_Jacket","cloth","Forge",10100,"Ink Recovery Up",3) );
+	gearList.push( new gear( "FA-01_Reversed","cloth","Forge",10100,"Quick Super Jump",3) );
 	
-	gearList.push( new gear( "FC_Albacore","cloth","Takoroka",1,200,"Respawn Punisher",1) );
+	gearList.push( new gear( "FC_Albacore","cloth","Takoroka",1200,"Respawn Punisher",1) );
 	gearList.push( new gear( "Fugu_Tee","cloth","Firefin",750,"Swim Speed Up",1) );
-	gearList.push( new gear( "Grape_Hoodie","cloth","Enperry",1,100,"Quick Respawn",1) );
+	gearList.push( new gear( "Grape_Hoodie","cloth","Enperry",1100,"Quick Respawn",1) );
 	gearList.push( new gear( "Gray_8-Bit_FishFry","cloth","Firefin",800,"Special Charge Up",1) );
 	gearList.push( new gear( "Gray_FA-11_Bomber","cloth","Forge",0,"Cold-Blooded",2) );
 	
-	gearList.push( new gear( "Gray_Hoodie","cloth","Skalop",1,900,"Sub Power Up",2) );
-	gearList.push( new gear( "Green_Tee","cloth","Forge",1,200,"Special Saver",1) );
+	gearList.push( new gear( "Gray_Hoodie","cloth","Skalop",1900,"Sub Power Up",2) );
+	gearList.push( new gear( "Green_Tee","cloth","Forge",1200,"Special Saver",1) );
 	gearList.push( new gear( "Green_V-Neck_Limited Tee","cloth","SquidForce",0,"Quick Super Jump",2) );
-	gearList.push( new gear( "Green-Check_Shirt","cloth","Zekko",2,000,"Sub Power Up",2) );
-	gearList.push( new gear( "Half-Sleeve_Sweater","cloth","Toni Kensa",4,100,"Ink Saver Sub",2) );
+	gearList.push( new gear( "Green-Check_Shirt","cloth","Zekko",2000,"Sub Power Up",2) );
+	gearList.push( new gear( "Half-Sleeve_Sweater","cloth","Toni Kensa",4100,"Ink Saver Sub",2) );
 	
 	gearList.push( new gear( "Hero_Hoodie_Replica","cloth","Cuttlegear",0,"Ink Recovery Up",2) );
 	gearList.push( new gear( "Hero_Jacket_Replica","cloth","Cuttlegear",0,"Swim Speed Up",2) );
 	gearList.push( new gear( "Hightide_Era_Band_Tee","cloth","Rockenberg",900,"Thermal Ink",1) );
-	gearList.push( new gear( "Hula_Punk_Shirt","cloth","Annaki",5,000,"Ink Saver Main",2) );
-	gearList.push( new gear( "Inkfall_Shirt","cloth","Toni Kensa",4,900,"Special Charge Up",2) );
+	gearList.push( new gear( "Hula_Punk_Shirt","cloth","Annaki",5000,"Ink Saver Main",2) );
+	gearList.push( new gear( "Inkfall_Shirt","cloth","Toni Kensa",4900,"Special Charge Up",2) );
 	
-	gearList.push( new gear( "","cloth","",0,"",1) );
-	gearList.push( new gear( "","cloth","",0,"",1) );
-	gearList.push( new gear( "","cloth","",0,"",1) );
-	gearList.push( new gear( "","cloth","",0,"",1) );
-	gearList.push( new gear( "","cloth","",0,"",1) );
+	gearList.push( new gear( "Inkopolis_Squaps_Jersey","cloth","Zink",1250,"Cold-Blooded",1) );
+	gearList.push( new gear( "King_Jersey","cloth","Enperry",3100,"Respawn Punisher",2) );
+	gearList.push( new gear( "Layered_Anchor_LS","cloth","SquidForce",4000,"Run Speed Up",2) );
+	gearList.push( new gear( "Layered_Vector_LS","cloth","Takoroka",1200,"Special Saver",1) );
+	gearList.push( new gear( "Lime_Easy-Stripe_Shirt","cloth","Splash Mob",3800,"Ink Resistance Up",2) );
 	
-	gearList.push( new gear( "","cloth","",0,"",1) );
-	gearList.push( new gear( "","cloth","",0,"",1) );
-	gearList.push( new gear( "","cloth","",0,"",1) );
-	gearList.push( new gear( "","cloth","",0,"",1) );
-	gearList.push( new gear( "","cloth","",0,"",1) );
+	gearList.push( new gear( "Logo_Aloha_Shirt","cloth","Zekko",2900,"Ink Recovery Up",2) );
+	gearList.push( new gear( "Matcha_Down_Jacket","cloth","Inkline",9100,"Ninja Squid",3) );
+	gearList.push( new gear( "Mint_Tee","cloth","Skalop",400,"Bomb Defense Up",1) );
+	gearList.push( new gear( "Mister_Shrug_Tee","cloth","Krak-On",9200,"Ink Resistance Up",3) );
+	gearList.push( new gear( "Navy_Deca_Logo_Tee","cloth","Zink",1200,"Ink Saver Main",1) );
 	
-	gearList.push( new gear( "","cloth","",0,"",1) );
+	gearList.push( new gear( "Navy_King_Tank","cloth","Enperry",600,"Ink Resistance Up",1) );
+	gearList.push( new gear( "Navy_Striped_LS","cloth","Splash Mob",1050,"Ink Recovery Up",1) );
+	gearList.push( new gear( "Negative_Longcuff_Sweater","cloth","Toni Kensa",11800,"Haunt",3) );
+	gearList.push( new gear( "Octobowler_Shirt","cloth","Krak-On",2100,"Ink Saver Main",2) );
+	gearList.push( new gear( "Pink_Easy-Stripe_Shirt","cloth","Splash Mob",3800,"Quick Super Jump",2) );
 	
-	// gearList.push( new gear( "","cloth","",0,"",1) );
+	gearList.push( new gear( "Positive_Longcuff_Sweater","cloth","Toni Kensa",10800,"Swim Speed Up",3) );
+	gearList.push( new gear( "Power_Armor","cloth","amiibo",0,"Quick Respawn",2) );
+	gearList.push( new gear( "Power_Armor_Mk_I","cloth","amiibo",0,"Ink Resistance Up",2) );
+	gearList.push( new gear( "Prune_Parashooter","cloth","Annaki",7800,"Ninja Squid",3) );
+	gearList.push( new gear( "Pullover_Coat","cloth","Toni Kensa",13200,"Thermal Ink",3) );
+	
+	gearList.push( new gear( "Purple_Camo_LS","cloth","Takoroka",600,"Sub Power Up",1) );
+	gearList.push( new gear( "Red_Tentatek_Tee","cloth","Tentatek",3100,"Swim Speed Up",2) );
+	gearList.push( new gear( "Red_V-Neck_Limited_Tee","cloth","SquidForce",0,"Quick Respawn",2) );
+	gearList.push( new gear( "Red_Vector_Tee","cloth","Takoroka",500,"Ink Saver Main",1) );
+	gearList.push( new gear( "Reel_Sweat","cloth","Zekko",900,"Special Power Up",1) );
+	
+	gearList.push( new gear( "Retro_Sweat","cloth","SquidForce",9000,"Bomb Defense Up",3) );
+	gearList.push( new gear( "Sailor-Stripe_Tee","cloth","Splash Mob",700,"Run Speed Up",1) );
+	gearList.push( new gear( "Samurai_Jacket","cloth","amiibo",0,"Special Charge Up",2) );
+	gearList.push( new gear( "School_Cardigan","cloth","amiibo",0,"Run Speed Up",2) );
+	gearList.push( new gear( "School_Uniform","cloth","amiibo",0,"Ink Recovery Up",2) );
+	
+	gearList.push( new gear( "Shirt_AND_Tie","cloth","Splash Mob",8400,"Special Saver",3) );
+	gearList.push( new gear( "Shirt_with_Blue_Hoodie","cloth","Splash Mob",2900,"Special Power Up",2) );
+	gearList.push( new gear( "Short_Knit_Layers","cloth","Toni Kensa",9850,"Ink Saver Main",3) );
+	gearList.push( new gear( "Shrimp-Pink_Polo","cloth","Splash Mob",550,"Ninja Squid",1) );
+	gearList.push( new gear( "Slash_King_Tank","cloth","Enperry",450,"Thermal Ink",1) );
+	
+	gearList.push( new gear( "Slipstream_United","cloth","Takoroka",1800,"Bomb Defense Up",2) );
+	gearList.push( new gear( "Splatfest_Tee","cloth","SquidForce",0,"Ability Doubler",3) );
+	gearList.push( new gear( "Squid_Satin_Jacket","cloth","Zekko",9200,"Quick Respawn",3) );
+	gearList.push( new gear( "Squid_Squad_Band_Tee","cloth","Rockenberg",900,"Ink Resistance Up",1) );
+	
+	gearList.push( new gear( "Squinja_Suit","cloth","amiibo",0,"Special Saver",2) );
+	gearList.push( new gear( "Sunny-Day_Tee","cloth","Krak-On",300,"Special Charge Up",1) );
+	gearList.push( new gear( "Takoroka_Windcrusher","cloth","Takoroka",8500,"Cold-Blooded",3) );
+	gearList.push( new gear( "Urchins_Jersey","cloth","Zink",700,"Run Speed Up",1) );
+	gearList.push( new gear( "Varsity_Jacket","cloth","Zekko",11500,"Ink Saver Sub",3) );
+	
+	gearList.push( new gear( "Vintage_Check_Shirt","cloth","Rockenberg",9000,"Haunt",3) );
+	gearList.push( new gear( "Wet_Floor_Band_Tee","cloth","Rockenberg",900,"Swim Speed Up",1) );
+	gearList.push( new gear( "White_8-Bit_FishFry","cloth","Firefin",800,"Sub Power Up",1) );
+	gearList.push( new gear( "White_Anchor_Tee","cloth","SquidForce",2800,"Ninja Squid",2) );
+	gearList.push( new gear( "White_Baseball_LS","cloth","Rockenberg",800,"Quick Super Jump",1) );
+	
+	gearList.push( new gear( "White_Deca_Logo_Tee","cloth","Zink",1200,"Ink Resistance Up",1) );
+	gearList.push( new gear( "White_Inky_Rider","cloth","Rockenberg",12800,"Special Power Up",3) );
+	gearList.push( new gear( "White_King_Tank","cloth","Enperry",600,"Haunt",1) );
+	gearList.push( new gear( "White_Tee","cloth","SquidForce",400,"Ink Saver Sub",1) );
+	gearList.push( new gear( "White_Urchin_Rock_Tee","cloth","Rockenberg",850,"Ink Saver Main",1) );
+	
+	gearList.push( new gear( "White_V-Neck_Tee","cloth","SquidForce",3800,"Special Saver",2) );
+	gearList.push( new gear( "Yellow_Layered_LS","cloth","SquidForce",500,"Quick Super Jump",1) );
+	gearList.push( new gear( "Yellow_Urban_Vest","cloth","Firefin",4100,"Haunt",2) );
+	gearList.push( new gear( "Zekko_Baseball_LS","cloth","Zekko",800,"Bomb Defense Up",1) );
+	gearList.push( new gear( "Zekko_Hoodie","cloth","Zekko",2800,"Ninja Squid",2) );
+	
+	gearList.push( new gear( "Zekko_Jade_Coat","cloth","Zekko",3600,"Respawn Punisher",2) );
+	gearList.push( new gear( "Zekko_Redleaf_Coat","cloth","Zekko",2600,"Haunt",2) );
+	gearList.push( new gear( "Zink_Layered_LS","cloth","Zink",600,"Respawn Punisher",1) );
 	}
 	// shoeGear
 	{
