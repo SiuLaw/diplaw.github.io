@@ -214,7 +214,7 @@ $(document).ready( function() {
 				var output = timesBy(list,1); // Redundant
 				break;
 			default:
-				alert('More than 3 abilities have been chosen, cannot make an outfit!')
+				//alert('More than 3 abilities have been chosen, cannot make an outfit!')
 				var output = timesBy(list,0);
 		}
 		
@@ -295,6 +295,72 @@ $(document).ready( function() {
 					// there are too many this ability, outfit rejected
 					continue;
 				}
+			}
+			
+		}
+		
+		return arrayOfOutfit
+			
+	}
+	
+	function chooseFlexGear(abilityList,brandList) {
+		
+		var initialMainList =  maxRepeatAbility(abilityCheckList);
+		var initialBrandList = maxRepeatAbility(brandCheckList);
+		
+		// NOTE: may add condition to end outfiting early if no abilities are selected;
+		
+		var headGearList = filterGearByANB("head", abilityList, brandList);
+		var clothGearList = filterGearByANB("cloth", abilityList, brandList);
+		var shoeGearList = filterGearByANB("shoe", abilityList, brandList);
+		
+		var headGearNum = headGearList.length;
+		var clothGearNum = clothGearList.length;
+		var shoeGearNum = shoeGearList.length;
+		
+		// alert( "There are " + headGearNum + ", " + clothGearNum + ", " + shoeGearNum + ", " + "gears to choose from");
+		
+		var arrayOfOutfit = [];
+		
+		for( var i = 0; i < headGearNum; i++ ) {
+			var tempHead = headGearList[i]
+			
+			//alert( "First gear is " + tempHead.name );
+			//alert( "This gear has ability " + tempHead.ability + " with index " + tempHead.abilityIndex() + " and " + tempHead.brandAbilityIndex() );
+			
+			var currentMainList1  = initialMainList.slice();
+			var currentBrandList1 = initialBrandList.slice();
+			
+			currentMainList1[ tempHead.abilityIndex() ] -= 1;
+			currentBrandList1[ tempHead.brandAbilityIndex() ] -= 1;
+		
+			
+			// carry on to cloth gear loop
+			for( var j = 0; j < clothGearNum; j++ ) {
+				var tempCloth = clothGearList[j];
+				
+				var currentMainList2 = currentMainList1.slice();
+				var currentBrandList2 = currentBrandList1.slice();
+				
+				currentMainList2[ tempCloth.abilityIndex() ] -= 1;
+				currentBrandList2[ tempCloth.brandAbilityIndex() ] -= 1;
+				
+				// alert("Now has outfit: " + tempHead.name + ", " + tempCloth.name );
+				
+				// carry on to shoe gear loop
+				for( var k = 0; k < shoeGearNum; k++ ) {
+					var tempShoe = shoeGearList[k];
+					
+					// alert(extractNamesFromArray(headGearList)+ ";" + extractNamesFromArray(clothGearList) + ";" + extractNamesFromArray(shoeGearList) );
+					
+					
+					arrayOfOutfit.push( new outfit( tempHead.name, tempCloth.name, tempShoe.name ) );
+						
+					
+				}
+					
+					
+				
 			}
 			
 		}
@@ -472,6 +538,10 @@ $(document).ready( function() {
 		var arrayOfOutfit = chooseGear(abilityList,brandList);
 		
 		$(".outfit").text( JSON.stringify( arrayOfOutfit ));
+		
+		var arrayOutfitFlex = chooseFlexGear(abilityList,brandList);
+		$(".outfitFlex").text( JSON.stringify( arrayOutfitFlex ));
+		
 	
 	}
 	
