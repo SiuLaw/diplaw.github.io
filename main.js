@@ -656,12 +656,80 @@ $(document).ready( function() {
 	gearList.push( new gear( "Birch_Climbing_Shoes","shoe","Inkline",1200,"Special Charge Up",1) );
 	gearList.push( new gear( "Black_Dakroniks","shoe","Zink",1500,"Cold-Blooded",2) );
 	
+	gearList.push( new gear( "Black_Flip-Flops","shoe","Zekko",300,"Object Shredder",1) );
+	gearList.push( new gear( "Black_Norimaki_750s","shoe","Tentatek",9800,"Special Charge Up",3) );
+	gearList.push( new gear( "Black_Trainers","shoe","Tentatek",500,"Quick Respawn",1) );
+	gearList.push( new gear( "Blue_AND_Black_Squidkid_IV","shoe","Enperry",11000,"Quick Super Jump",3) );
+	gearList.push( new gear( "Blue_Moto_Boots","shoe","Rockenberg",10800,"Ink Resistance Up",3) );
 	
 	
+	gearList.push( new gear( "Blue_Slip-Ons","shoe","Krak-On",400,"Sub Power Up",1) );
+	gearList.push( new gear( "Blueberry_Casuals","shoe","Krak-On",700,"Ink Saver Sub",1) );
+	gearList.push( new gear( "Canary_Trainers","shoe","Tentatek",900,"Quick Super Jump",1) );
+	gearList.push( new gear( "Cherry_Kicks","shoe","Rockenberg",2400,"Stealth Jump",2) );
+	gearList.push( new gear( "Choco_Clogs","shoe","Krak-On",1800,"Quick Respawn",2) );
+	
+	gearList.push( new gear( "Crazy_Arrows","shoe","Takoroka",4500,"Stealth Jump",2) );
+	gearList.push( new gear( "Cream_Basics","shoe","Krak-On",0,"Special Saver",1) );
+	gearList.push( new gear( "Fringed_Loafers","shoe","amiibo",0,"Cold-Blooded",2) );
+	gearList.push( new gear( "Gold_Hi-Horses","shoe","Zink",7000,"Run Speed Up",3) );
+	gearList.push( new gear( "Gray_Sea-Slug_Hi-Tops","shoe","Tentatek",8500,"Bomb Defense Up",3) );
+	
+	
+	gearList.push( new gear( "Hero_Runner_Replicas","shoe","Cuttlegear",0,"Quick Super Jump",2) );
+	gearList.push( new gear( "Hero_Snowboots_Replicas","shoe","Cuttlegear",0,"Ink Saver Sub",2) );
 	gearList.push( new gear( "Hunter_Hi-Tops","shoe","Krak-On",500,"Ink Recovery Up",1) );
+	gearList.push( new gear( "Hunting_Boots","shoe","Splash Mob",11500,"Bomb Defense Up",3) );
+	gearList.push( new gear( "Kid_Clams","shoe","Rockenberg",9500,"Special Power Up",3) );
+	
+	gearList.push( new gear( "LE_Soccer_Shoes","shoe","Takoroka",7500,"Ink Resistance Up",3) );
+	gearList.push( new gear( "Mawcasins","shoe","Splash Mob",2400,"Ink Recovery Up",2) );
+	gearList.push( new gear( "Mint_Dakroniks","shoe","Zink",1200,"Drop Roller",1) );
+	gearList.push( new gear( "Moto_Boots","shoe","Rockenberg",3800,"Quick Respawn",2) );
+	gearList.push( new gear( "Neon_Delta_Straps","shoe","Inkline",4800,"Sub Power Up",2) );
+	
+	
+	gearList.push( new gear( "Neon_Sea_Slugs","shoe","Tentatek",700,"Ink Resistance Up",1) );
+	gearList.push( new gear( "Orange_Arrows","shoe","Takoroka",1100,"Ink Saver Main",1) );
+	gearList.push( new gear( "Orca_Hi-Tops","shoe","Takoroka",2800,"Special Saver",2) );
+	gearList.push( new gear( "Oyster_Clogs","shoe","Krak-On",600,"Run Speed Up",1) );
+	gearList.push( new gear( "Pink_Trainers","shoe","Tentatek",500,"Sub Power Up",1) );
+	
+	gearList.push( new gear( "Piranha_Moccasins","shoe","Splash Mob",9400,"Stealth Jump",3) );
+	gearList.push( new gear( "Plum_Casuals","shoe","Krak-On",2000,"Object Shredder",2) );
+	gearList.push( new gear( "Power_Boots","shoe","amiibo",0,"Ink Saver Main",2) );
+	gearList.push( new gear( "Power_Boots_Mk_I","shoe","amiibo",0,"Bomb Defense Up",2) );
+	gearList.push( new gear( "Pro_Trail_Boots","shoe","Inkline",9800,"Ink Resistance Up",3) );
+	
+	
+	gearList.push( new gear( "Punk_Blacks","shoe","Rockenberg",8800,"Cold-Blooded",3) );
+	gearList.push( new gear( "Punk_Whites","shoe","Rockenberg",3800,"Special Charge Up",2) );
+	gearList.push( new gear( "Purple_Hi-Horses","shoe","Zink",1000,"Special Power Up",1) );
+	gearList.push( new gear( "Purple_Sea_Slugs","shoe","Tentatek",1800,"Run Speed Up",2) );
+	gearList.push( new gear( "Red_&_Black_Squidkid_IV","shoe","Enperry",11000,"Special Charge Up",3) );
+	
+	gearList.push( new gear( "Red_Hi-Horses","shoe","Zink",800,"Ink Saver Main",1) );
+	gearList.push( new gear( "Red-Mesh_Sneakers","shoe","Tentatek",1700,"Special Power Up",2) );
+	gearList.push( new gear( "Roasted_Brogues","shoe","Rockenberg",1200,"Bomb Defense Up",1) );
+	gearList.push( new gear( "Samurai_Shoes","shoe","amiibo",0,"Special Power Up",2) );
+	gearList.push( new gear( "School_Shoes","shoe","amiibo",0,"Ink Saver Sub",2) );
+	
+	
+	gearList.push( new gear( "Smoky_Wingtips","shoe","Rockenberg",8600,"Object Shredder",3) );
+	gearList.push( new gear( "Snow_Delta_Straps","shoe","Inkline",8800,"Swim Speed Up",3) );
+	gearList.push( new gear( "Squinja_Boots","shoe","amiibo",0,"Swim Speed Up",2) );
+	gearList.push( new gear( "Strapping_Reds","shoe","Splash Mob",8800,"Ink Resistance Up",1) );
+	gearList.push( new gear( "Strapping_Whites","shoe","Splash Mob",8700,"Ink Saver Sub",3) );
+	
+	gearList.push( new gear( "Sunny_Climbing_Shoes","shoe","Inkline",3200,"Special Saver",2) );
+	gearList.push( new gear( "Sunset_Orca_Hi-Tops","shoe","Takoroka",3800,"Drop Roller",2) );
+	gearList.push( new gear( "Trail_Boots","shoe","Inkline",7500,"Ink Recovery Up",3) );
+	gearList.push( new gear( "White_Kicks","shoe","Rockenberg",1400,"Swim Speed Up",1) );
 	gearList.push( new gear( "White_Norimaki_750s","shoe","Tentatek",3800,"Swim Speed Up",2) );
 	
-	// gearList.push( new gear( "","shoe","",0,"",1) );
+	
+	gearList.push( new gear( "White Seahorses","shoe","Zink",600,"Ink Recovery Up",1) );
+	gearList.push( new gear( "Yellow-Mesh Sneakers","shoe","Tentatek",1300,"Cold-Blooded",1) );
 	}
 	
 	// On clicking ability icons
