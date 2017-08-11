@@ -482,16 +482,19 @@ $(document).ready( function() {
 		for( var i = 0; i < headGearNum; i++ ) {
 			var tempHead = headGearList[i]
 			
+			// alert("First loop")
 			// carry on to cloth gear loop
 			for( var j = 0; j < clothGearNum; j++ ) {
 				var tempCloth = clothGearList[j];
 				
+				// alert("Second loop")
 				// alert("Now has outfit: " + tempHead.name + ", " + tempCloth.name );
 				
 				// carry on to shoe gear loop
 				for( var k = 0; k < shoeGearNum; k++ ) {
 					var tempShoe = shoeGearList[k];
 					
+					// alert("Third loop")
 					if( subCount === 0 ) { 
 						// if the submissve list has nothing, then automatically pass the outfit
 						var fitting = true 
@@ -501,11 +504,9 @@ $(document).ready( function() {
 							// brand is sub, check brand
 							var subAbilities = [tempHead.brandAbility(),tempCloth.brandAbility(),tempShoe.brandAbility()]
 							var fitting = hasIntersect( subAbilities, brandList );
-							// alert( subAbilities + " ; " + brandList + " ; " + fitting )
-							
 						} else {
 							// main is sub, check main
-							var subAbilities = [tempHead.ability(),tempCloth.ability(),tempShoe.ability()]
+							var subAbilities = [tempHead.ability,tempCloth.ability,tempShoe.ability]
 							var fitting = hasIntersect( subAbilities, abilityList );
 						}
 					}
@@ -845,6 +846,7 @@ $(document).ready( function() {
 		}
 		
 		limitSelection();
+		updateOutfits();
 	});
 	
 	// The update process
@@ -883,7 +885,14 @@ $(document).ready( function() {
 			$(idString).removeClass("hidden");
 		}
 		
+		updateOutfits();
+	}
+	
+	function updateOutfits() {
 		// STARTING OUTFIT GENERATION
+		var abilityList = 	index2shortName(abilityCheckList);
+		var brandList = 	index2shortName(brandCheckList);
+		
 		$(".outfit").text("loading");
 		var arrayOfOutfit = chooseGear(abilityList,brandList);
 		$(".outfit").text( "Number of outfits: " + arrayOfOutfit.length + "; " + JSON.stringify( arrayOfOutfit ));
@@ -894,6 +903,7 @@ $(document).ready( function() {
 		
 		$(".outfitLoose").text("loading");
 		var arrayOutfitLoose = chooseLooseGear(abilityList,brandList);
+		// alert( arrayOutfitLoose );
 		$(".outfitLoose").text( "Number of outfits: " + arrayOutfitLoose.length + "; " + JSON.stringify( arrayOutfitLoose ));
 	}
 	
