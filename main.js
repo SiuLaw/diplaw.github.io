@@ -1,5 +1,7 @@
 $(document).ready( function() {
 	// Variables
+	var modeValue = 0;
+	
 	var abilityCheckList = [0,0,0,0,0,
 							0,0,0,0,0,
 							0,0,0,0,0,
@@ -31,7 +33,7 @@ $(document).ready( function() {
 							]
 							
 	var shortNameList = [	"Ability Doubler",		"Bomb Defense Up",	"Cold-Blooded",			"Comeback",				"Drop Roller",
-							"Haunt",				"Ink Recovery Up",	"Ink Resistance Up",	"Ink Saver (Main)",		"Ink Saver (Sub)",
+							"Haunt",				"Ink Recovery Up",	"Ink Resistance Up",	"Ink Saver Main",		"Ink Saver Sub",
 							"Last-Ditch Effort",	"Ninja Squid",		"Object Shredder",		"Opening Gambit",		"Quick Respawn",
 							"Quick Super Jump",		"Respawn Punisher",	"Run Speed Up",			"Special Charge Up",	"Special Power Up",
 							"Special Saver",		"Stealth Jump",		"Sub Power Up",			"Swim Speed Up",		"Tenacity",
@@ -44,9 +46,9 @@ $(document).ready( function() {
 							"Toni Kensa",		"Zekko", 			"Zink"
 							];
 	
-	var brandAbilityList =[	"NONE",				"Cold-Blooded", 	"NONE", 				"Sub Power Up", 		"Ink Saver (Sub)", 
+	var brandAbilityList =[	"NONE",				"Cold-Blooded", 	"NONE", 				"Sub Power Up", 		"Ink Saver Sub", 
 							"Special Power Up",	"NONE", 			"Bomb Defense Up", 		"Swim Speed Up", 		"Run Speed Up", 
-							"Quick Respawn", 	"Ink Saver (Main)",	"Ink Resistance Up",	"Special Charge Up",	"Ink Recovery Up", 
+							"Quick Respawn", 	"Ink Saver Main",	"Ink Resistance Up",	"Special Charge Up",	"Ink Recovery Up", 
 							"Cold-Blooded", 	"Special Saver", 	"Quick Super Jump"
 							];
 	
@@ -200,23 +202,23 @@ $(document).ready( function() {
 		
 		switch( numSelection ) {
 			case 0:
-				//alert("0 abilities chosen") ;
-				var output = replaceBy(list,3); // If there are no filters in the first place, then no need to restrict the abilities at all
+				//alert("0 ability chosen") ;
+				var output = replaceBy(list,3); // If there are no filters in the first place, then no need to restrict the ability at all
 				break;
 			case 1:
-				//alert("1 abilities chosen");
+				//alert("1 ability chosen");
 				var output = timesBy(list,3);
 				break;
 			case 2:
-				//alert("2 abilities chosen");
+				//alert("2 ability chosen");
 				var output = timesBy(list,2);
 				break;
 			case 3:
-				//alert("3 abilities chosen");
+				//alert("3 ability chosen");
 				var output = timesBy(list,1); // Redundant
 				break;
 			default:
-				//alert('More than 3 abilities have been chosen, cannot make an outfit!')
+				//alert('More than 3 ability have been chosen, cannot make an outfit!')
 				var output = timesBy(list,0);
 		}
 		
@@ -230,71 +232,68 @@ $(document).ready( function() {
 		this.shoe = shoe;
 	}
 	
-	function suggestMain() {
-		var abilityList = 	index2shortName(abilityCheckList);
-		var brandList = 	index2shortName(brandCheckList);
+	function limitSelection() {
+		
+		var abilityList = [];
+		var brandList = [];
+		
+		if( modeValue === 0 ) {
+			abilityList = 	index2shortName(abilityCheckList);
+		} else {
+			brandList = 	index2shortName(brandCheckList);
+		}
 		
 		var remainingGear = filterGearByANB( ["head","cloth","shoe"], abilityList, brandList)
 		
-		if( remainingGear.length === 0 ) { 
+		if( modeValue === 0 ) {
+			//Currently main is dominating
 			$(".ability").removeClass("hidden");
-			$(".brand").removeClass("hidden");
-			return
-		} else if ( brandList.length === 0 ) { 
-			$(".ability").removeClass("hidden");
-			return
+			
+			if( abilityList.length === 0 ) {
+				// no need to hide brand if no main is selected
+				$(".brand").removeClass("hidden");
+				return
+			} else {
+				//hide brand ability
+				$(".brand").addClass("hidden");
+			}
+			
+			for( var i=0; i < remainingGear.length; i++ ) {
+				var idString = "#" + brandNameList[remainingGear[i].brandAbilityIndex()]
+				$(idString).removeClass("hidden");
+			}
+			
+			for( var i=0; i < brandCheckList.length; i++ ) {
+				if( brandCheckList[i] > 0 ) {
+					var idString = "#" + brandNameList[i]
+					$(idString).removeClass("hidden");
+				}
+			}
 		} else {
-			$(".ability").addClass("hidden");
-		}
-		
-		
-		
-		// un-hide the remaining main classes
-		for( var i=0; i < remainingGear.length; i++ ) {
-			var idString = "#" + abilityNameList[remainingGear[i].abilityIndex()]
-			$(idString).removeClass("hidden");
-		}
-		
-		/*
-		// un-hide the remaining brand classes
-		for( var i=0; i < remainingGear.length; i++ ) {
-			var idString = "#" + brandNameList[remainingGear[i].brandAbilityIndex()]
-			$(idString).removeClass("hidden");
-		}
-		*/
-	}
-	
-	function suggestBrand() {
-		var abilityList = 	index2shortName(abilityCheckList);
-		var brandList = 	index2shortName(brandCheckList);
-		
-		var remainingGear = filterGearByANB( ["head","cloth","shoe"], abilityList, brandList)
-		
-		if( remainingGear.length === 0 ) { 
-			$(".ability").removeClass("hidden");
+			//Currently brand is dominating
 			$(".brand").removeClass("hidden");
-			return
-		} else if ( abilityList.length === 0 ) { 
-			$(".brand").removeClass("hidden");
-			return
-		} else {
-			$(".brand").addClass("hidden");
-		}
 		
-		/*
-		// un-hide the remaining main classes
-		for( var i=0; i < remainingGear.length; i++ ) {
-			var idString = "#" + abilityNameList[remainingGear[i].abilityIndex()]
-			$(idString).removeClass("hidden");
-		}
-		*/
-		
-		// un-hide the remaining brand classes
-		for( var i=0; i < remainingGear.length; i++ ) {
-			var idString = "#" + brandNameList[remainingGear[i].brandAbilityIndex()]
-			$(idString).removeClass("hidden");
-		}
-		
+			if( brandList.length === 0 ) {
+				// no need to hide main if no brand is selected
+				$(".ability").removeClass("hidden");
+				return
+			} else {
+				//hide brand ability
+				$(".ability").addClass("hidden");
+			}
+			
+			for( var i=0; i < remainingGear.length; i++ ) {
+				var idString = "#" + abilityNameList[remainingGear[i].abilityIndex()]
+				$(idString).removeClass("hidden");
+			}
+			
+			for( var i=0; i < abilityCheckList.length; i++ ) {
+				if( abilityCheckList[i] > 0 ) {
+					var idString = "#" + abilityNameList[i]
+					$(idString).removeClass("hidden");
+				}
+			}
+		}	
 	}
 	
 	function chooseGear(abilityList,brandList) {
@@ -302,7 +301,7 @@ $(document).ready( function() {
 		var initialMainList =  maxRepeatAbility(abilityCheckList);
 		var initialBrandList = maxRepeatAbility(brandCheckList);
 		
-		// NOTE: may add condition to end outfiting early if no abilities are selected;
+		// NOTE: may add condition to end outfiting early if no ability are selected;
 		
 		var headGearList = filterGearByANB(["head"], abilityList, brandList);
 		var clothGearList = filterGearByANB(["cloth"], abilityList, brandList);
@@ -378,7 +377,7 @@ $(document).ready( function() {
 		var initialMainList =  maxRepeatAbility(abilityCheckList);
 		var initialBrandList = maxRepeatAbility(brandCheckList);
 		
-		// NOTE: may add condition to end outfiting early if no abilities are selected;
+		// NOTE: may add condition to end outfiting early if no ability are selected;
 		
 		var headGearList = filterGearByANB(["head"], abilityList, brandList);
 		var clothGearList = filterGearByANB(["cloth"], abilityList, brandList);
@@ -451,7 +450,7 @@ $(document).ready( function() {
 	gearList.push( new gear( "Armor_Helmet_Replica",	"head",	"Cuttlegear",	0,		"Tenacity",				2) );
 	gearList.push( new gear( "Backwards_Cap", 			"head",	"Zekko",		700,	"Quick Respawn",		1) );
 	
-	gearList.push( new gear( "Bamboo_Hat", 			"head","Inkline", 		2200, 	"Ink Saver (Main)",	2) );
+	gearList.push( new gear( "Bamboo_Hat", 			"head","Inkline", 		2200, 	"Ink Saver Main",	2) );
 	gearList.push( new gear( "Bike_Helmet", 		"head","Skalop", 		4800,	"Ink Recovery Up",	2) );
 	gearList.push( new gear( "Blowfish_Bell_Hat",	"head","Firefin", 		850,	"Ink Recovery Up", 	1) );
 	gearList.push( new gear( "Bobble_Hat", 			"head","Splash Mob",	2000,	"Quick Super Jump",	2) );
@@ -471,8 +470,8 @@ $(document).ready( function() {
 	gearList.push( new gear( "Hero_Headset_Replica","head", "Cuttlegear", 0, "Run Speed Up", 2) );
 	gearList.push( new gear( "Hickory_Work_Cap","head", "Krak-On", 8700, "Special Power Up", 3) );
 	gearList.push( new gear( "Hockey_Helmet","head", "Forge", 9900, "Cold-Blooded", 3) );
-	gearList.push( new gear( "Jellyvader_Cap","head", "Skalop", 10000, "Ink Saver (Sub)", 3) );
-	gearList.push( new gear( "King_Facemask","head", "Enperry", 500, "Ink Saver (Sub)", 1) );
+	gearList.push( new gear( "Jellyvader_Cap","head", "Skalop", 10000, "Ink Saver Sub", 3) );
+	gearList.push( new gear( "King_Facemask","head", "Enperry", 500, "Ink Saver Sub", 1) );
 	
 	gearList.push( new gear( "King_Flip_Mesh","head", "Enperry", 3200, "Run Speed Up", 2) );
 	gearList.push( new gear( "Knitted_Hat","head", "Firefin", 1400, "Ink Resistance Up", 1) );
@@ -492,21 +491,21 @@ $(document).ready( function() {
 	gearList.push( new gear( "Samurai_Helmet", "head", "amiibo", 0, "Quick Super Jump", 2) );
 	gearList.push( new gear( "Skull_Bandana", "head", "Forge", 7800, "Special Saver", 3) );
 	
-	gearList.push( new gear( "Snorkel_Mask", "head", "Forge", 3000, "Ink Saver (Sub)", 2) );
+	gearList.push( new gear( "Snorkel_Mask", "head", "Forge", 3000, "Ink Saver Sub", 2) );
 	gearList.push( new gear( "Soccer_Headband", "head", "Tentatek", 3000, "Tenacity", 2) );
 	gearList.push( new gear( "Special_Forces_Beret","head","Forge",9700, "Opening Gambit", 3) );
 	gearList.push( new gear( "Squash_Headband","head","Zink",400, "Special Saver", 1) );
 	gearList.push( new gear( "Squinja_Mask","head","amiibo",0, "Quick Respawn", 2) );
 	
 	gearList.push( new gear( "Squid_Clip-Ons","head","amiibo",0, "Opening Gambit", 2) );
-	gearList.push( new gear( "Squid_Facemask","head","SquidForce",300,"Ink Saver (Main)", 1) );
+	gearList.push( new gear( "Squid_Facemask","head","SquidForce",300,"Ink Saver Main", 1) );
 	gearList.push( new gear( "Squidfin_Hook_Cans","head","Forge",3800,"Ink Resistance Up", 2) );
 	gearList.push( new gear( "Squidvader_Cap","head","Skalop",1300,"Special Charge Up", 1) );
 	gearList.push( new gear( "Squid_Hairclip","head","amiibo",0,"Swim Speed Up", 2) );
 	
 	gearList.push( new gear( "Straw_Boater","head","Skalop",550,"Quick Super Jump", 1) );
 	gearList.push( new gear( "Striped_Beanie","head","Splash Mob",900,"Opening Gambit", 1) );
-	gearList.push( new gear( "Studio_Headphones","head","Forge",2800,"Ink Saver (Main)", 2) );
+	gearList.push( new gear( "Studio_Headphones","head","Forge",2800,"Ink Saver Main", 2) );
 	gearList.push( new gear( "Sun_Visor","head","Tentatek",2600,"Sub Power Up", 2) );
 	gearList.push( new gear( "Takoroka_Mesh","head","Takoroka",400,"Bomb Defense Up", 1) );
 	
@@ -524,20 +523,76 @@ $(document).ready( function() {
 	gearList.push( new gear( "Annaki_Drive Tee","cloth","Annaki",5500,"Thermal Ink",2) );
 	gearList.push( new gear( "Annaki_Evolution_Tee","cloth","Annaki",8800,"Respawn Punisher",3) );
 	gearList.push( new gear( "Armor_Jacket_Replica","cloth","Cuttlegear",0,"Special Charge Up",2) );
-	// gearList.push( new gear( "B-ball_Jersey_(Away)","cloth","Zink",800,"Ink Saver (Sub)",1) );
-	gearList.push( new gear( "B-ball_Jersey_Away","cloth","Zink",800,"Ink Saver (Sub)",1) );
+	gearList.push( new gear( "B-ball_Jersey_Away","cloth","Zink",800,"Ink Saver Sub",1) );
 	
+	gearList.push( new gear( "Baby-Jelly_Shirt","cloth","Splash Mob",1350,"Bomb Defense Up",1) );
+	gearList.push( new gear( "Baby-Jelly_Shirt_AND_Tie","cloth","Splash Mob",3800,"Cold-Blooded",2) );
+	gearList.push( new gear( "Basic_Tee","cloth","SquidForce",0,"Quick Respawn",1) );
+	gearList.push( new gear( "Berry_Ski Jacket","cloth","Inkline",3900,"Special Power Up",2) );
+	gearList.push( new gear( "Birded_Corduroy_Jacket","cloth","Zekko",10400,"Run Speed Up",3) );
+		
+	gearList.push( new gear( "Black_Inky_Rider","cloth","Rockenberg",12100,"Sub Power Up",3) );
+	gearList.push( new gear( "Black_LS","cloth","Zekko",3000,"Quick Super Jump",2) );
+	gearList.push( new gear( "Black_Squideye","cloth","Tentatek",500,"Run Speed Up",1) );
+	gearList.push( new gear( "Black_Tee","cloth","SquidForce",400,"Special Power Up",1) );
+	gearList.push( new gear( "Black_Urchin_Rock_Tee","cloth","Rockenberg",850,"Ink Recovery Up",1) );
 	
+	gearList.push( new gear( "Black_V-Neck_Tee","cloth","SquidForce",3800,"Thermal Ink",2) );
+	gearList.push( new gear( "Blue_Peaks_Tee","cloth","Inkline",400,"Ink Saver Sub",1) );
+	gearList.push( new gear( "Blue_Sailor_Suit","cloth","Forge",11000,"Sub Power Up",3) );
+	gearList.push( new gear( "Blue_Tentatek_Tee","cloth","Tentatek",3100,"Quick Respawn",2) );
+	gearList.push( new gear( "Brown_FA-11_Bomber","cloth","Forge",0,"Bomb Defense Up",2) );
 	
-	gearList.push( new gear( "Varsity_Jacket","cloth","Zekko",11500,"Ink Saver (Sub)",3) );
+	gearList.push( new gear( "Camo_Zip_Hoodie","cloth","Firefin",9000,"Quick Respawn",3) );
+	gearList.push( new gear( "Chilly_Mountain_Coat","cloth","Inkline",7900,"Swim Speed Up",3) );
+	gearList.push( new gear( "Chirpy_Chips_Band_Tee","cloth","Rockenberg",900,"Cold-Blooded",1) );
+	gearList.push( new gear( "Choco_Layered_LS","cloth","Takoroka",1400,"Ink Saver Sub",1) );
+	gearList.push( new gear( "Crimson_Parashooter","cloth","Annaki",9200,"Special Charge Up",3) );
 	
+	gearList.push( new gear( "Cycle_King_Jersey","cloth","Tentatek",8,900,"Bomb Defense Up",3) );
+	gearList.push( new gear( "Dark_Urban_Vest","cloth","Firefin",10,000,"Cold-Blooded",3) );
+	gearList.push( new gear( "Eggplant_Mountain_Coat","cloth","Inkline",7,600,"Special Saver",3) );
+	gearList.push( new gear( "FA-01_Jacket","cloth","Forge",10,100,"Ink Recovery Up",3) );
+	gearList.push( new gear( "FA-01_Reversed","cloth","Forge",10,100,"Quick Super Jump",3) );
+	
+	gearList.push( new gear( "FC_Albacore","cloth","Takoroka",1,200,"Respawn Punisher",1) );
+	gearList.push( new gear( "Fugu_Tee","cloth","Firefin",750,"Swim Speed Up",1) );
+	gearList.push( new gear( "Grape_Hoodie","cloth","Enperry",1,100,"Quick Respawn",1) );
+	gearList.push( new gear( "Gray_8-Bit_FishFry","cloth","Firefin",800,"Special Charge Up",1) );
+	gearList.push( new gear( "Gray_FA-11_Bomber","cloth","Forge",0,"Cold-Blooded",2) );
+	
+	gearList.push( new gear( "Gray_Hoodie","cloth","Skalop",1,900,"Sub Power Up",2) );
+	gearList.push( new gear( "Green_Tee","cloth","Forge",1,200,"Special Saver",1) );
+	gearList.push( new gear( "Green_V-Neck_Limited Tee","cloth","SquidForce",0,"Quick Super Jump",2) );
+	gearList.push( new gear( "Green-Check_Shirt","cloth","Zekko",2,000,"Sub Power Up",2) );
+	gearList.push( new gear( "Half-Sleeve_Sweater","cloth","Toni Kensa",4,100,"Ink Saver Sub",2) );
+	
+	gearList.push( new gear( "Hero_Hoodie_Replica","cloth","Cuttlegear",0,"Ink Recovery Up",2) );
+	gearList.push( new gear( "Hero_Jacket_Replica","cloth","Cuttlegear",0,"Swim Speed Up",2) );
+	gearList.push( new gear( "Hightide_Era_Band_Tee","cloth","Rockenberg",900,"Thermal Ink",1) );
+	gearList.push( new gear( "Hula_Punk_Shirt","cloth","Annaki",5,000,"Ink Saver Main",2) );
+	gearList.push( new gear( "Inkfall_Shirt","cloth","Toni Kensa",4,900,"Special Charge Up",2) );
+	
+	gearList.push( new gear( "","cloth","",0,"",1) );
+	gearList.push( new gear( "","cloth","",0,"",1) );
+	gearList.push( new gear( "","cloth","",0,"",1) );
+	gearList.push( new gear( "","cloth","",0,"",1) );
+	gearList.push( new gear( "","cloth","",0,"",1) );
+	
+	gearList.push( new gear( "","cloth","",0,"",1) );
+	gearList.push( new gear( "","cloth","",0,"",1) );
+	gearList.push( new gear( "","cloth","",0,"",1) );
+	gearList.push( new gear( "","cloth","",0,"",1) );
+	gearList.push( new gear( "","cloth","",0,"",1) );
+	
+	gearList.push( new gear( "","cloth","",0,"",1) );
 	
 	// gearList.push( new gear( "","cloth","",0,"",1) );
 	}
 	// shoeGear
 	{
 	gearList.push( new gear( "Acerola_Rain_Boots","shoe","Inkline",600,"Run Speed Up",1) );
-	gearList.push( new gear( "Armor_Boot_Replicas","shoe","Cuttlegear",0,"Ink Saver (Main)",2) );
+	gearList.push( new gear( "Armor_Boot_Replicas","shoe","Cuttlegear",0,"Ink Saver Main",2) );
 	gearList.push( new gear( "Arrow_Pull-Ons","shoe","Toni Kensa",10000,"Drop Roller",3) );
 	gearList.push( new gear( "Birch_Climbing_Shoes","shoe","Inkline",1200,"Special Charge Up",1) );
 	gearList.push( new gear( "Black_Dakroniks","shoe","Zink",1500,"Cold-Blooded",2) );
@@ -558,7 +613,6 @@ $(document).ready( function() {
 
 		updateAfterClick();
 		
-		suggestBrand();
 		
 	});
 	
@@ -570,14 +624,26 @@ $(document).ready( function() {
 		
 		updateAfterClick();
 		
-		suggestMain();
+	});
+	
+	// On clicking switching mode
+	$("#switch").on("click", function() {
+		modeValue = ( modeValue + 1 ) % 2;
 		
+		if( modeValue === 0 ) {
+			$(this).text("Main ability")
+		} else {
+			$(this).text("Brand ability")
+		}
+		
+		limitSelection();
 	});
 	
 	// The update process
 	function updateAfterClick() {
 	
 		visualCheckList();
+		limitSelection();
 	
 		var abilityList = 	index2shortName(abilityCheckList);
 		var brandList = 	index2shortName(brandCheckList);
