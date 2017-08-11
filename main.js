@@ -438,6 +438,87 @@ $(document).ready( function() {
 			
 	}
 	
+	function hasIntersect( arrayA, arrayB ) {
+		var intersect = false;
+		
+		for ( var i = 0; i < arrayA.length; i++ ) {
+			
+			if( arrayB.indexOf( arrayA[i] ) !== -1 ) {
+				intersect = true;
+				break
+			}	
+		}
+		return intersect
+	}
+	
+	function chooseLooseGear(abilityList,brandList) {
+		
+		if( modeValue === 0 ) {
+			// main is dominating, brand is submissive
+			var headGearList = filterGearByANB(["head"], abilityList, []);
+			var clothGearList = filterGearByANB(["cloth"], abilityList, []);
+			var shoeGearList = filterGearByANB(["shoe"], abilityList, []);
+			
+			var subCount = brandList.length;
+			
+		} else {
+			// brand is dom, main is submissive
+			var headGearList = filterGearByANB(["head"], [], brandList);
+			var clothGearList = filterGearByANB(["cloth"], [], brandList);
+			var shoeGearList = filterGearByANB(["shoe"], [], brandList);
+			
+			var subCount = abilityList.length;
+		}
+		
+		var headGearNum = headGearList.length;
+		var clothGearNum = clothGearList.length;
+		var shoeGearNum = shoeGearList.length;
+		
+		// alert( "There are " + headGearNum + ", " + clothGearNum + ", " + shoeGearNum + ", " + "gears to choose from");
+		
+		var arrayOfOutfit = [];
+		
+		
+		for( var i = 0; i < headGearNum; i++ ) {
+			var tempHead = headGearList[i]
+			
+			// carry on to cloth gear loop
+			for( var j = 0; j < clothGearNum; j++ ) {
+				var tempCloth = clothGearList[j];
+				
+				// alert("Now has outfit: " + tempHead.name + ", " + tempCloth.name );
+				
+				// carry on to shoe gear loop
+				for( var k = 0; k < shoeGearNum; k++ ) {
+					var tempShoe = shoeGearList[k];
+					
+					if( subCount === 0 ) { 
+						// if the submissve list has nothing, then automatically pass the outfit
+						var fitting = true 
+					} else {					
+						// if the submissve list has somethign, the at least check that there is one required subAbility
+						if( modeValue === 0 ) {
+							// brand is sub, check brand
+							var subAbilities = [tempHead.brandAbility(),tempCloth.brandAbility(),tempShoe.brandAbility()]
+							var fitting = hasIntersect( subAbilities, brandList );
+							// alert( subAbilities + " ; " + brandList + " ; " + fitting )
+							
+						} else {
+							// main is sub, check main
+							var subAbilities = [tempHead.ability(),tempCloth.ability(),tempShoe.ability()]
+							var fitting = hasIntersect( subAbilities, abilityList );
+						}
+					}
+					
+					if( fitting ) { arrayOfOutfit.push( new outfit( tempHead.name, tempCloth.name, tempShoe.name ) )} ;
+				}
+			}
+		}
+		
+		return arrayOfOutfit
+			
+	}
+	
 	
 
 	
@@ -447,7 +528,7 @@ $(document).ready( function() {
 	gearList.push( new gear( "18K_Aviators", 			"head",	"Rockenberg",	12000,	"Last-Ditch Effort",	3) );
 	gearList.push( new gear( "Annaki_Beret", 			"head",	"Annaki",		11500,	"Ink Resistance Up",	3) );
 	gearList.push( new gear( "Annaki_Mask",				"head",	"Annaki",		3600,	"Opening Gambit",		2) );
-	gearList.push( new gear( "Armor_Helmet_Replica",	"head",	"Cuttlegear",	0,		"Tenacity",				2) );
+	//gearList.push( new gear( "Armor_Helmet_Replica",	"head",	"Cuttlegear",	0,		"Tenacity",				2) );
 	gearList.push( new gear( "Backwards_Cap", 			"head",	"Zekko",		700,	"Quick Respawn",		1) );
 	
 	gearList.push( new gear( "Bamboo_Hat", 			"head","Inkline", 		2200, 	"Ink Saver Main",	2) );
@@ -465,9 +546,9 @@ $(document).ready( function() {
 	gearList.push( new gear( "FishFry_Visor",			"head", 	"Firefin", 		500,	"Special Charge Up",	1) );
 	gearList.push( new gear( "Five-Panel_Cap",			"head", 	"Zekko", 		1800,	"Comeback",				2) );
 	gearList.push( new gear( "Half-Rim_Glasses",		"head", 	"Splash Mob",	4100,	"Special Power Up",		2) );
-	gearList.push( new gear( "Hero_Headphones_Replica",	"head", 	"Cuttlegear", 	0, 		"Special Saver", 		2) );
+	//gearList.push( new gear( "Hero_Headphones_Replica",	"head", 	"Cuttlegear", 	0, 		"Special Saver", 		2) );
 	
-	gearList.push( new gear( "Hero_Headset_Replica","head", "Cuttlegear", 0, "Run Speed Up", 2) );
+	//gearList.push( new gear( "Hero_Headset_Replica","head", "Cuttlegear", 0, "Run Speed Up", 2) );
 	gearList.push( new gear( "Hickory_Work_Cap","head", "Krak-On", 8700, "Special Power Up", 3) );
 	gearList.push( new gear( "Hockey_Helmet","head", "Forge", 9900, "Cold-Blooded", 3) );
 	gearList.push( new gear( "Jellyvader_Cap","head", "Skalop", 10000, "Ink Saver Sub", 3) );
@@ -483,25 +564,25 @@ $(document).ready( function() {
 	gearList.push( new gear( "Painters_Mask","head", "SquidForce", 4500, "Cold-Blooded", 2) );
 	gearList.push( new gear( "Patched_Hat", "head", "Skalop", 3600, "Cold-Blooded", 2) );
 	gearList.push( new gear( "Pilot_Goggles", "head", "Forge", 5500, "Sub Power Up", 2) );
-	gearList.push( new gear( "Power_Mask", "head", "amiibo", 0, "Bomb Defense Up", 2) );
+	//gearList.push( new gear( "Power_Mask", "head", "amiibo", 0, "Bomb Defense Up", 2) );
 	
-	gearList.push( new gear( "Power_Mask_Mk_I", "head", "amiibo", 0, "Ink Resistance Up", 2) );
+	//gearList.push( new gear( "Power_Mask_Mk_I", "head", "amiibo", 0, "Ink Resistance Up", 2) );
 	gearList.push( new gear( "Retro_Specs", "head", "Splash Mob", 500, "Quick Respawn", 1) );
 	gearList.push( new gear( "Safari_Hat", "head", "Forge", 2300, "Last-Ditch Effort", 2) );
-	gearList.push( new gear( "Samurai_Helmet", "head", "amiibo", 0, "Quick Super Jump", 2) );
+	//gearList.push( new gear( "Samurai_Helmet", "head", "amiibo", 0, "Quick Super Jump", 2) );
 	gearList.push( new gear( "Skull_Bandana", "head", "Forge", 7800, "Special Saver", 3) );
 	
 	gearList.push( new gear( "Snorkel_Mask", "head", "Forge", 3000, "Ink Saver Sub", 2) );
 	gearList.push( new gear( "Soccer_Headband", "head", "Tentatek", 3000, "Tenacity", 2) );
 	gearList.push( new gear( "Special_Forces_Beret","head","Forge",9700, "Opening Gambit", 3) );
 	gearList.push( new gear( "Squash_Headband","head","Zink",400, "Special Saver", 1) );
-	gearList.push( new gear( "Squinja_Mask","head","amiibo",0, "Quick Respawn", 2) );
+	//gearList.push( new gear( "Squinja_Mask","head","amiibo",0, "Quick Respawn", 2) );
 	
-	gearList.push( new gear( "Squid_Clip-Ons","head","amiibo",0, "Opening Gambit", 2) );
+	//gearList.push( new gear( "Squid_Clip-Ons","head","amiibo",0, "Opening Gambit", 2) );
 	gearList.push( new gear( "Squid_Facemask","head","SquidForce",300,"Ink Saver Main", 1) );
 	gearList.push( new gear( "Squidfin_Hook_Cans","head","Forge",3800,"Ink Resistance Up", 2) );
 	gearList.push( new gear( "Squidvader_Cap","head","Skalop",1300,"Special Charge Up", 1) );
-	gearList.push( new gear( "Squid_Hairclip","head","amiibo",0,"Swim Speed Up", 2) );
+	//gearList.push( new gear( "Squid_Hairclip","head","amiibo",0,"Swim Speed Up", 2) );
 	
 	gearList.push( new gear( "Straw_Boater","head","Skalop",550,"Quick Super Jump", 1) );
 	gearList.push( new gear( "Striped_Beanie","head","Splash Mob",900,"Opening Gambit", 1) );
@@ -522,7 +603,7 @@ $(document).ready( function() {
 	gearList.push( new gear( "Anchor_Sweat","cloth","SquidForce",2800,"Cold-Blooded",2) );
 	gearList.push( new gear( "Annaki_Drive Tee","cloth","Annaki",5500,"Thermal Ink",2) );
 	gearList.push( new gear( "Annaki_Evolution_Tee","cloth","Annaki",8800,"Respawn Punisher",3) );
-	gearList.push( new gear( "Armor_Jacket_Replica","cloth","Cuttlegear",0,"Special Charge Up",2) );
+	//gearList.push( new gear( "Armor_Jacket_Replica","cloth","Cuttlegear",0,"Special Charge Up",2) );
 	gearList.push( new gear( "B-ball_Jersey_Away","cloth","Zink",800,"Ink Saver Sub",1) );
 	
 	gearList.push( new gear( "Baby-Jelly_Shirt","cloth","Splash Mob",1350,"Bomb Defense Up",1) );
@@ -567,8 +648,8 @@ $(document).ready( function() {
 	gearList.push( new gear( "Green-Check_Shirt","cloth","Zekko",2000,"Sub Power Up",2) );
 	gearList.push( new gear( "Half-Sleeve_Sweater","cloth","Toni Kensa",4100,"Ink Saver Sub",2) );
 	
-	gearList.push( new gear( "Hero_Hoodie_Replica","cloth","Cuttlegear",0,"Ink Recovery Up",2) );
-	gearList.push( new gear( "Hero_Jacket_Replica","cloth","Cuttlegear",0,"Swim Speed Up",2) );
+	//gearList.push( new gear( "Hero_Hoodie_Replica","cloth","Cuttlegear",0,"Ink Recovery Up",2) );
+	//gearList.push( new gear( "Hero_Jacket_Replica","cloth","Cuttlegear",0,"Swim Speed Up",2) );
 	gearList.push( new gear( "Hightide_Era_Band_Tee","cloth","Rockenberg",900,"Thermal Ink",1) );
 	gearList.push( new gear( "Hula_Punk_Shirt","cloth","Annaki",5000,"Ink Saver Main",2) );
 	gearList.push( new gear( "Inkfall_Shirt","cloth","Toni Kensa",4900,"Special Charge Up",2) );
@@ -592,8 +673,8 @@ $(document).ready( function() {
 	gearList.push( new gear( "Pink_Easy-Stripe_Shirt","cloth","Splash Mob",3800,"Quick Super Jump",2) );
 	
 	gearList.push( new gear( "Positive_Longcuff_Sweater","cloth","Toni Kensa",10800,"Swim Speed Up",3) );
-	gearList.push( new gear( "Power_Armor","cloth","amiibo",0,"Quick Respawn",2) );
-	gearList.push( new gear( "Power_Armor_Mk_I","cloth","amiibo",0,"Ink Resistance Up",2) );
+	//gearList.push( new gear( "Power_Armor","cloth","amiibo",0,"Quick Respawn",2) );
+	//gearList.push( new gear( "Power_Armor_Mk_I","cloth","amiibo",0,"Ink Resistance Up",2) );
 	gearList.push( new gear( "Prune_Parashooter","cloth","Annaki",7800,"Ninja Squid",3) );
 	gearList.push( new gear( "Pullover_Coat","cloth","Toni Kensa",13200,"Thermal Ink",3) );
 	
@@ -605,9 +686,9 @@ $(document).ready( function() {
 	
 	gearList.push( new gear( "Retro_Sweat","cloth","SquidForce",9000,"Bomb Defense Up",3) );
 	gearList.push( new gear( "Sailor-Stripe_Tee","cloth","Splash Mob",700,"Run Speed Up",1) );
-	gearList.push( new gear( "Samurai_Jacket","cloth","amiibo",0,"Special Charge Up",2) );
-	gearList.push( new gear( "School_Cardigan","cloth","amiibo",0,"Run Speed Up",2) );
-	gearList.push( new gear( "School_Uniform","cloth","amiibo",0,"Ink Recovery Up",2) );
+	//gearList.push( new gear( "Samurai_Jacket","cloth","amiibo",0,"Special Charge Up",2) );
+	//gearList.push( new gear( "School_Cardigan","cloth","amiibo",0,"Run Speed Up",2) );
+	//gearList.push( new gear( "School_Uniform","cloth","amiibo",0,"Ink Recovery Up",2) );
 	
 	gearList.push( new gear( "Shirt_AND_Tie","cloth","Splash Mob",8400,"Special Saver",3) );
 	gearList.push( new gear( "Shirt_with_Blue_Hoodie","cloth","Splash Mob",2900,"Special Power Up",2) );
@@ -620,7 +701,7 @@ $(document).ready( function() {
 	gearList.push( new gear( "Squid_Satin_Jacket","cloth","Zekko",9200,"Quick Respawn",3) );
 	gearList.push( new gear( "Squid_Squad_Band_Tee","cloth","Rockenberg",900,"Ink Resistance Up",1) );
 	
-	gearList.push( new gear( "Squinja_Suit","cloth","amiibo",0,"Special Saver",2) );
+	//gearList.push( new gear( "Squinja_Suit","cloth","amiibo",0,"Special Saver",2) );
 	gearList.push( new gear( "Sunny-Day_Tee","cloth","Krak-On",300,"Special Charge Up",1) );
 	gearList.push( new gear( "Takoroka_Windcrusher","cloth","Takoroka",8500,"Cold-Blooded",3) );
 	gearList.push( new gear( "Urchins_Jersey","cloth","Zink",700,"Run Speed Up",1) );
@@ -651,7 +732,7 @@ $(document).ready( function() {
 	// shoeGear
 	{
 	gearList.push( new gear( "Acerola_Rain_Boots","shoe","Inkline",600,"Run Speed Up",1) );
-	gearList.push( new gear( "Armor_Boot_Replicas","shoe","Cuttlegear",0,"Ink Saver Main",2) );
+	//gearList.push( new gear( "Armor_Boot_Replicas","shoe","Cuttlegear",0,"Ink Saver Main",2) );
 	gearList.push( new gear( "Arrow_Pull-Ons","shoe","Toni Kensa",10000,"Drop Roller",3) );
 	gearList.push( new gear( "Birch_Climbing_Shoes","shoe","Inkline",1200,"Special Charge Up",1) );
 	gearList.push( new gear( "Black_Dakroniks","shoe","Zink",1500,"Cold-Blooded",2) );
@@ -671,13 +752,13 @@ $(document).ready( function() {
 	
 	gearList.push( new gear( "Crazy_Arrows","shoe","Takoroka",4500,"Stealth Jump",2) );
 	gearList.push( new gear( "Cream_Basics","shoe","Krak-On",0,"Special Saver",1) );
-	gearList.push( new gear( "Fringed_Loafers","shoe","amiibo",0,"Cold-Blooded",2) );
+	//gearList.push( new gear( "Fringed_Loafers","shoe","amiibo",0,"Cold-Blooded",2) );
 	gearList.push( new gear( "Gold_Hi-Horses","shoe","Zink",7000,"Run Speed Up",3) );
 	gearList.push( new gear( "Gray_Sea-Slug_Hi-Tops","shoe","Tentatek",8500,"Bomb Defense Up",3) );
 	
 	
-	gearList.push( new gear( "Hero_Runner_Replicas","shoe","Cuttlegear",0,"Quick Super Jump",2) );
-	gearList.push( new gear( "Hero_Snowboots_Replicas","shoe","Cuttlegear",0,"Ink Saver Sub",2) );
+	//gearList.push( new gear( "Hero_Runner_Replicas","shoe","Cuttlegear",0,"Quick Super Jump",2) );
+	//gearList.push( new gear( "Hero_Snowboots_Replicas","shoe","Cuttlegear",0,"Ink Saver Sub",2) );
 	gearList.push( new gear( "Hunter_Hi-Tops","shoe","Krak-On",500,"Ink Recovery Up",1) );
 	gearList.push( new gear( "Hunting_Boots","shoe","Splash Mob",11500,"Bomb Defense Up",3) );
 	gearList.push( new gear( "Kid_Clams","shoe","Rockenberg",9500,"Special Power Up",3) );
@@ -697,8 +778,8 @@ $(document).ready( function() {
 	
 	gearList.push( new gear( "Piranha_Moccasins","shoe","Splash Mob",9400,"Stealth Jump",3) );
 	gearList.push( new gear( "Plum_Casuals","shoe","Krak-On",2000,"Object Shredder",2) );
-	gearList.push( new gear( "Power_Boots","shoe","amiibo",0,"Ink Saver Main",2) );
-	gearList.push( new gear( "Power_Boots_Mk_I","shoe","amiibo",0,"Bomb Defense Up",2) );
+	//gearList.push( new gear( "Power_Boots","shoe","amiibo",0,"Ink Saver Main",2) );
+	//gearList.push( new gear( "Power_Boots_Mk_I","shoe","amiibo",0,"Bomb Defense Up",2) );
 	gearList.push( new gear( "Pro_Trail_Boots","shoe","Inkline",9800,"Ink Resistance Up",3) );
 	
 	
@@ -711,13 +792,13 @@ $(document).ready( function() {
 	gearList.push( new gear( "Red_Hi-Horses","shoe","Zink",800,"Ink Saver Main",1) );
 	gearList.push( new gear( "Red-Mesh_Sneakers","shoe","Tentatek",1700,"Special Power Up",2) );
 	gearList.push( new gear( "Roasted_Brogues","shoe","Rockenberg",1200,"Bomb Defense Up",1) );
-	gearList.push( new gear( "Samurai_Shoes","shoe","amiibo",0,"Special Power Up",2) );
-	gearList.push( new gear( "School_Shoes","shoe","amiibo",0,"Ink Saver Sub",2) );
+	//gearList.push( new gear( "Samurai_Shoes","shoe","amiibo",0,"Special Power Up",2) );
+	//gearList.push( new gear( "School_Shoes","shoe","amiibo",0,"Ink Saver Sub",2) );
 	
 	
 	gearList.push( new gear( "Smoky_Wingtips","shoe","Rockenberg",8600,"Object Shredder",3) );
 	gearList.push( new gear( "Snow_Delta_Straps","shoe","Inkline",8800,"Swim Speed Up",3) );
-	gearList.push( new gear( "Squinja_Boots","shoe","amiibo",0,"Swim Speed Up",2) );
+	//gearList.push( new gear( "Squinja_Boots","shoe","amiibo",0,"Swim Speed Up",2) );
 	gearList.push( new gear( "Strapping_Reds","shoe","Splash Mob",8800,"Ink Resistance Up",1) );
 	gearList.push( new gear( "Strapping_Whites","shoe","Splash Mob",8700,"Ink Saver Sub",3) );
 	
@@ -803,14 +884,17 @@ $(document).ready( function() {
 		}
 		
 		// STARTING OUTFIT GENERATION
+		$(".outfit").text("loading");
 		var arrayOfOutfit = chooseGear(abilityList,brandList);
+		$(".outfit").text( "Number of outfits: " + arrayOfOutfit.length + "; " + JSON.stringify( arrayOfOutfit ));
 		
-		$(".outfit").text( JSON.stringify( arrayOfOutfit ));
-		
+		$(".outfitFlex").text("loading");
 		var arrayOutfitFlex = chooseFlexGear(abilityList,brandList);
-		$(".outfitFlex").text( JSON.stringify( arrayOutfitFlex ));
+		$(".outfitFlex").text( "Number of outfits: " + arrayOutfitFlex.length + "; " + JSON.stringify( arrayOutfitFlex ));
 		
-	
+		$(".outfitLoose").text("loading");
+		var arrayOutfitLoose = chooseLooseGear(abilityList,brandList);
+		$(".outfitLoose").text( "Number of outfits: " + arrayOutfitLoose.length + "; " + JSON.stringify( arrayOutfitLoose ));
 	}
 	
 });
