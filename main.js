@@ -223,20 +223,77 @@ $(document).ready( function() {
 		return output
 	}
 	
+	// outfit constructor
 	function outfit( head, cloth, shoe ) {
 		this.head = head;
 		this.cloth = cloth;
 		this.shoe = shoe;
 	}
 	
-	
-	function suggestMains(abilityList,brandList) {
-		// this is used when a brand is clicked, and then this hides the main abilities that are no longer avaliable
+	function suggestMain() {
+		var abilityList = 	index2shortName(abilityCheckList);
+		var brandList = 	index2shortName(brandCheckList);
 		
 		var remainingGear = filterGearByANB( ["head","cloth","shoe"], abilityList, brandList)
-		alert( JSON.stringify(extractNamesFromArray( remainingGear )) )
+		
+		if( remainingGear.length === 0 ) { 
+			$(".ability").removeClass("hidden");
+			$(".brand").removeClass("hidden");
+			return
+		} else if ( brandList.length === 0 ) { 
+			$(".ability").removeClass("hidden");
+			return
+		} else {
+			$(".ability").addClass("hidden");
+		}
 		
 		
+		
+		// un-hide the remaining main classes
+		for( var i=0; i < remainingGear.length; i++ ) {
+			var idString = "#" + abilityNameList[remainingGear[i].abilityIndex()]
+			$(idString).removeClass("hidden");
+		}
+		
+		/*
+		// un-hide the remaining brand classes
+		for( var i=0; i < remainingGear.length; i++ ) {
+			var idString = "#" + brandNameList[remainingGear[i].brandAbilityIndex()]
+			$(idString).removeClass("hidden");
+		}
+		*/
+	}
+	
+	function suggestBrand() {
+		var abilityList = 	index2shortName(abilityCheckList);
+		var brandList = 	index2shortName(brandCheckList);
+		
+		var remainingGear = filterGearByANB( ["head","cloth","shoe"], abilityList, brandList)
+		
+		if( remainingGear.length === 0 ) { 
+			$(".ability").removeClass("hidden");
+			$(".brand").removeClass("hidden");
+			return
+		} else if ( abilityList.length === 0 ) { 
+			$(".brand").removeClass("hidden");
+			return
+		} else {
+			$(".brand").addClass("hidden");
+		}
+		
+		/*
+		// un-hide the remaining main classes
+		for( var i=0; i < remainingGear.length; i++ ) {
+			var idString = "#" + abilityNameList[remainingGear[i].abilityIndex()]
+			$(idString).removeClass("hidden");
+		}
+		*/
+		
+		// un-hide the remaining brand classes
+		for( var i=0; i < remainingGear.length; i++ ) {
+			var idString = "#" + brandNameList[remainingGear[i].brandAbilityIndex()]
+			$(idString).removeClass("hidden");
+		}
 		
 	}
 	
@@ -386,8 +443,8 @@ $(document).ready( function() {
 
 	
 	var gearList = [];
-	
-	// Headgear
+	// headGear
+	{
 	gearList.push( new gear( "18K_Aviators", 			"head",	"Rockenberg",	12000,	"Last-Ditch Effort",	3) );
 	gearList.push( new gear( "Annaki_Beret", 			"head",	"Annaki",		11500,	"Ink Resistance Up",	3) );
 	gearList.push( new gear( "Annaki_Mask",				"head",	"Annaki",		3600,	"Opening Gambit",		2) );
@@ -460,9 +517,9 @@ $(document).ready( function() {
 	gearList.push( new gear( "Visor_Skate_Helmet",	"head", "Skalop", 8000, "Last-Ditch Effort", 3) );
 	
 	gearList.push( new gear( "White_Headband","head","SquidForce",0,"Ink Recovery Up", 1) );
-	
-	
-	// cloth
+	}
+	// clothGear
+	{
 	gearList.push( new gear( "Anchor_Sweat","cloth","SquidForce",2800,"Cold-Blooded",2) );
 	gearList.push( new gear( "Annaki_Drive Tee","cloth","Annaki",5500,"Thermal Ink",2) );
 	gearList.push( new gear( "Annaki_Evolution_Tee","cloth","Annaki",8800,"Respawn Punisher",3) );
@@ -476,8 +533,9 @@ $(document).ready( function() {
 	
 	
 	// gearList.push( new gear( "","cloth","",0,"",1) );
-	
-	// shoe
+	}
+	// shoeGear
+	{
 	gearList.push( new gear( "Acerola_Rain_Boots","shoe","Inkline",600,"Run Speed Up",1) );
 	gearList.push( new gear( "Armor_Boot_Replicas","shoe","Cuttlegear",0,"Ink Saver (Main)",2) );
 	gearList.push( new gear( "Arrow_Pull-Ons","shoe","Toni Kensa",10000,"Drop Roller",3) );
@@ -490,7 +548,7 @@ $(document).ready( function() {
 	gearList.push( new gear( "White_Norimaki_750s","shoe","Tentatek",3800,"Swim Speed Up",2) );
 	
 	// gearList.push( new gear( "","shoe","",0,"",1) );
-	
+	}
 	
 	// On clicking ability icons
 	$(".ability").on("click", function() {
@@ -499,6 +557,8 @@ $(document).ready( function() {
 		abilityCheckList[selectedIndex] = ( abilityCheckList[selectedIndex] + 1 ) % 2;
 
 		updateAfterClick();
+		
+		suggestBrand();
 		
 	});
 	
@@ -510,6 +570,8 @@ $(document).ready( function() {
 		
 		updateAfterClick();
 		
+		suggestMain();
+		
 	});
 	
 	// The update process
@@ -519,8 +581,6 @@ $(document).ready( function() {
 	
 		var abilityList = 	index2shortName(abilityCheckList);
 		var brandList = 	index2shortName(brandCheckList);
-		
-		suggestMains(abilityList,brandList);
 		
 		var headGearName = extractNamesFromArray( filterGearByANB(["head"], abilityList, brandList) )
 		var clothGearName = extractNamesFromArray( filterGearByANB(["cloth"], abilityList, brandList) )
