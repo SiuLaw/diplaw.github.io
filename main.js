@@ -351,7 +351,7 @@ $(document).ready( function() {
 						//check if there is already too many of same ability
 						if( currentMainList2[ tempShoe.abilityIndex() ] > 0 && currentBrandList2[ tempShoe.brandAbilityIndex() ] > 0 ) {
 							// enough slot, add
-							arrayOfOutfit.push( new outfit( tempHead.name, tempCloth.name, tempShoe.name ) );
+							arrayOfOutfit.push( new outfit( tempHead, tempCloth, tempShoe ));
 							
 						} else {
 							// not enough slot, reject
@@ -423,7 +423,7 @@ $(document).ready( function() {
 					// alert(extractNamesFromArray(headGearList)+ ";" + extractNamesFromArray(clothGearList) + ";" + extractNamesFromArray(shoeGearList) );
 					
 					
-					arrayOfOutfit.push( new outfit( tempHead.name, tempCloth.name, tempShoe.name ) );
+					arrayOfOutfit.push( new outfit( tempHead, tempCloth, tempShoe ) );
 						
 					
 				}
@@ -511,7 +511,7 @@ $(document).ready( function() {
 						}
 					}
 					
-					if( fitting ) { arrayOfOutfit.push( new outfit( tempHead.name, tempCloth.name, tempShoe.name ) )} ;
+					if( fitting ) { arrayOfOutfit.push( new outfit( tempHead, tempCloth, tempShoe ) )} ;
 				}
 			}
 		}
@@ -888,23 +888,66 @@ $(document).ready( function() {
 		updateOutfits();
 	}
 	
+	
+	function string2Element( string, className ) {
+		var el = $("<div></div>").append( $("<p></p>").text(string) ); 
+		el.addClass( className );
+		return el
+	}
+	
+	function extractProp2String( object, keys) {
+		var output = ""
+		for( var i = 0; i < keys.length; i++ ) {
+			output = output + object[ keys[i] ]
+		}
+		return output
+	}
+		
+	function extractProp2StringWithLayer( object, key1, keys ) {
+		
+		var output = ""
+		
+		for( var i = 0; i < key1.length; i++ ) {
+			var outerKey = key1[i]
+			var innerObject = object[ outerKey ]
+			output = output + outerKey + ": " + extractProp2String( innerObject, keys) + "; "
+		}
+		return output
+		
+	}
+	
+	function printOutfitFromArray( currentArray, outfitType, outerKey, innerKey, outputAfter) {
+		
+		// remove any previous results elements
+		$("." + outfitType).remove();
+		$("." + outfitType + "counter").remove();
+		
+		for( i = currentArray.length - 1; i >= 0; i-- ) { 
+			var currentOutfit = currentArray[i]
+			var string = extractProp2StringWithLayer( currentOutfit, outerKey, innerKey );
+			var el = string2Element( string, outfitType );
+			$(outputAfter).after( el );;
+		}
+		var string = "Current outfit count: " + currentArray.length
+		var el = $("<div></div>").append( $("<p></p>").text(string) );
+		el.addClass(outfitType + "counter");
+		$(outputAfter).after( el ) 
+	}
+
+	
 	function updateOutfits() {
 		// STARTING OUTFIT GENERATION
 		var abilityList = 	index2shortName(abilityCheckList);
 		var brandList = 	index2shortName(brandCheckList);
 		
-		$(".outfit").text("loading");
-		var arrayOfOutfit = chooseGear(abilityList,brandList);
-		$(".outfit").text( "Number of outfits: " + arrayOfOutfit.length + "; " + JSON.stringify( arrayOfOutfit ));
+		var arrayOutfit = chooseGear(abilityList,brandList);		
+		printOutfitFromArray( arrayOutfit, "strictOutfit", ["head","cloth","shoe"], ["name"],"#strictOutfitTitle")
 		
-		$(".outfitFlex").text("loading");
 		var arrayOutfitFlex = chooseFlexGear(abilityList,brandList);
-		$(".outfitFlex").text( "Number of outfits: " + arrayOutfitFlex.length + "; " + JSON.stringify( arrayOutfitFlex ));
+		printOutfitFromArray( arrayOutfitFlex, "flexOutfit", ["head","cloth","shoe"], ["name"],"#flexOutfitTitle")
 		
-		$(".outfitLoose").text("loading");
 		var arrayOutfitLoose = chooseLooseGear(abilityList,brandList);
-		// alert( arrayOutfitLoose );
-		$(".outfitLoose").text( "Number of outfits: " + arrayOutfitLoose.length + "; " + JSON.stringify( arrayOutfitLoose ));
+		printOutfitFromArray( arrayOutfitLoose, "looseOutfit", ["head","cloth","shoe"], ["name"],"#looseOutfitTitle")
 	}
 	
 });
