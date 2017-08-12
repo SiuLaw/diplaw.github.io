@@ -841,9 +841,14 @@ $(document).ready( function() {
 		modeValue = ( modeValue + 1 ) % 2;
 		
 		if( modeValue === 0 ) {
-			$(this).text("Main ability")
+			$(this).text("Main ability");
+			$("#brandLabel").addClass("hidden");
+			$("#mainLabel").removeClass("hidden")
+			
 		} else {
 			$(this).text("Brand ability")
+			$("#mainLabel").addClass("hidden");
+			$("#brandLabel").removeClass("hidden")
 		}
 		
 		limitSelection();
@@ -858,6 +863,10 @@ $(document).ready( function() {
 	
 		var abilityList = 	index2shortName(abilityCheckList);
 		var brandList = 	index2shortName(brandCheckList);
+		
+		// change counter
+		$("#mainCounter").text( abilityList.length )
+		$("#brandCounter").text( brandList.length )
 		
 		var headGearName = extractNamesFromArray( filterGearByANB(["head"], abilityList, brandList) )
 		var clothGearName = extractNamesFromArray( filterGearByANB(["cloth"], abilityList, brandList) )

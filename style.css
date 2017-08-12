@@ -3,26 +3,18 @@
 }
 
 img, .gear {
-  height: 100px;
-  width: 100px;
-}
-
-.abilitiesList {
-	background-color: orange;
-	radius: 10px;
-}
-
-.brandList {
-	background-color: blue;
-	radius: 10px;
+  height: 60px;
+  width: 60px;
 }
 
 .highlightA{
 	background-color: red;
+	border-radius: 10px;
 }
 
 .highlightB{
-	background-color: yellow ;
+	background-color: yellow;
+	border-radius: 10px;
 }
 
 .hidden{

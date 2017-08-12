@@ -24,80 +24,147 @@
 		<h1>Splatoon 2 Gear Helper (Work In Progress)</h1>
 	</div>
 
-	
-	
-	
-	
 	<div class="container">
+		
+		<h3>User inputs</h3>
+		
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">Current priority (Click to switch): <button id="switch" class="btn btn-primary btn-xs">Main ability</button></h4>
+			</div>
+		</div>
+		
+		
 		<div class="panel-group">
 			<div class="panel panel-default">
-				<div class="panel-heading">Current dominating abilities (Click to switch)</div>
-				<div class="panel-body">
-					<button id="switch" class="btn btn-primary">Main ability</button>
+				<div class="panel-heading">
+					<h4 class="panel-title" data-toggle="collapse" data-target="#mainPanel">Select main abilities <span id="mainCounter" class="badge">0</span> <span id="mainLabel" class="label label-default">Priority</span></h4>
+				</div>
+				<div id="mainPanel" class="panel-collapse collapse">
+					<div class="panel-body">	
+						<img class="ability" 	id="Ability_Ability_Doubler" title="Ability Ability_Doubler"  	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/0/08/S2_Ability_Ability_Doubler.png/60px-S2_Ability_Ability_Doubler.png 	 >
+						<img class="ability" 	id="Ability_Bomb_Defense_Up" title="Ability Bomb_Defense_Up"  	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/c/ce/S2_Ability_Bomb_Defense_Up.png/60px-S2_Ability_Bomb_Defense_Up.png 	 >
+						<img class="ability" 	id="Ability_Cold_Blooded" title="Ability Cold_Blooded" 	 		src= https://cdn.wikimg.net/splatoonwiki/images/thumb/8/86/S2_Ability_Cold-Blooded.png/60px-S2_Ability_Cold-Blooded.png 		 >
+						<img class="ability" 	id="Ability_Comeback" title="Ability Comeback"		 			src= https://cdn.wikimg.net/splatoonwiki/images/4/4a/Ability_Comeback.svg 													 >
+						<img class="ability" 	id="Ability_Drop_Roller" title="Ability Drop_Roller"		 		src= https://cdn.wikimg.net/splatoonwiki/images/thumb/1/17/S2_Ability_Drop_Roller.png/60px-S2_Ability_Drop_Roller.png 			 >
+						
+						<img class="ability" 	id="Ability_Haunt" title="Ability Haunt" 				 				src= https://cdn.wikimg.net/splatoonwiki/images/thumb/d/d9/S2_Ability_Haunt.png/60px-S2_Ability_Haunt.png 								 >
+						<img class="ability" 	id="Ability_Ink_Recovery_Up" title="Ability Ink_Recovery_Up"  	 	src= https://cdn.wikimg.net/splatoonwiki/images/2/25/Ability_Ink_Recovery_Up.svg 															 >
+						<img class="ability" 	id="Ability_Ink_Resistance_Up" title="Ability Ink_Resistance_Up"	 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/e/ec/S2_Ability_Ink_Resistance_Up.png/60px-S2_Ability_Ink_Resistance_Up.png 			 >
+						<img class="ability" 	id="Ability_Ink_Saver_Main" title="Ability Ink_Saver_Main"		 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/e/e6/S2_Ability_Ink_Saver_%28Main%29.png/60px-S2_Ability_Ink_Saver_%28Main%29.png 	>
+						<img class="ability" 	id="Ability_Ink_Saver_Sub" title="Ability Ink_Saver_Sub"		 		src= https://cdn.wikimg.net/splatoonwiki/images/e/ef/Ability_Ink_Saver_%28Sub%29.svg 														 >
+						
+						<img class="ability" 	id="Ability_Last-Ditch_Effort" title="Ability Last-Ditch_Effort" 	 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/2/22/S2_Ability_Last-Ditch_Effort.png/60px-S2_Ability_Last-Ditch_Effort.png 	 >
+						<img class="ability"	id="Ability_Ninja_Squid" title="Ability Ninja_Squid" 		 		src= https://cdn.wikimg.net/splatoonwiki/images/9/91/Ability_Ninja_Squid.svg 														 >
+						<img class="ability" 	id="Ability_Object_Shredder" title="Ability Object_Shredder" 	 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/9/92/S2_Ability_Object_Shredder.png/60px-S2_Ability_Object_Shredder.png 		 >
+						<img class="ability" 	id="Ability_Opening_Gambit" title="Ability Opening_Gambit" 		 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/3/39/S2_Ability_Opening_Gambit.png/60px-S2_Ability_Opening_Gambit.png 		 >
+						<img class="ability" 	id="Ability_Quick_Respawn" title="Ability Quick_Respawn" 		 		src= https://cdn.wikimg.net/splatoonwiki/images/thumb/b/b2/S2_Ability_Quick_Respawn.png/60px-S2_Ability_Quick_Respawn.png 		 >
+						
+						<img class="ability" 	id="Ability_Quick_Super_Jump" title="Ability Quick_Super_Jump" 	 	src= https://cdn.wikimg.net/splatoonwiki/images/3/3d/Ability_Quick_Super_Jump.svg 													 >
+						<img class="ability" 	id="Ability_Respawn_Punisher" title="Ability Respawn_Punisher" 	 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/4/4e/S2_Ability_Respawn_Punisher.png/60px-S2_Ability_Respawn_Punisher.png 	 >
+						<img class="ability" 	id="Ability_Run_Speed_Up" title="Ability Run_Speed_Up" 		 		src= https://cdn.wikimg.net/splatoonwiki/images/4/42/Ability_Run_Speed_Up.svg 													 >
+						<img class="ability" 	id="Ability_Special_Charge_Up" title="Ability Special_Charge_Up"	 	src= https://cdn.wikimg.net/splatoonwiki/images/f/f6/Ability_Special_Charge_Up.svg 													 >
+						<img class="ability" 	id="Ability_Special_Power_Up" title="Ability Special_Power_Up" 	 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/8/80/S2_Ability_Special_Power_Up.png/60px-S2_Ability_Special_Power_Up.png 	>
+						
+						<img class="ability" 	id="Ability_Special_Saver" title="Ability Special_Saver" 	 	src= https://cdn.wikimg.net/splatoonwiki/images/1/11/Ability_Special_Saver.svg 											>
+						<img class="ability" 	id="Ability_Stealth_Jump" title="Ability Stealth_Jump" 	 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/3/34/S2_Ability_Stealth_Jump.png/60px-S2_Ability_Stealth_Jump.png	>
+						<img class="ability" 	id="Ability_Sub_Power_Up" title="Ability Sub_Power_Up"	 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/6/6a/S2_Ability_Sub_Power_Up.png/60px-S2_Ability_Sub_Power_Up.png	 >
+						<img class="ability" 	id="Ability_Swim_Speed_Up" title="Ability Swim_Speed_Up"	 	src= https://cdn.wikimg.net/splatoonwiki/images/d/de/Ability_Swim_Speed_Up.svg 											 >
+						<img class="ability" 	id="Ability_Tenacity" title="Ability Tenacity" 		 		src= https://cdn.wikimg.net/splatoonwiki/images/1/19/Ability_Tenacity.svg 												>
+						
+						<img class="ability" 	id="Ability_Thermal_Ink" title="Ability Thermal_Ink" 	 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/4/46/S2_Ability_Thermal_Ink.png/60px-S2_Ability_Thermal_Ink.png 	 >
+					</div>
 				</div>
 			</div>
 			<div class="panel panel-default">
-				<div class="panel-heading">Select brand abilities</div>
-				<div class="panel-body">	
-					<img class="ability" 	id="Ability_Ability_Doubler" title="Ability Ability_Doubler"  	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/0/08/S2_Ability_Ability_Doubler.png/60px-S2_Ability_Ability_Doubler.png 	 >
-					<img class="ability" 	id="Ability_Bomb_Defense_Up" title="Ability Bomb_Defense_Up"  	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/c/ce/S2_Ability_Bomb_Defense_Up.png/60px-S2_Ability_Bomb_Defense_Up.png 	 >
-					<img class="ability" 	id="Ability_Cold_Blooded" title="Ability Cold_Blooded" 	 		src= https://cdn.wikimg.net/splatoonwiki/images/thumb/8/86/S2_Ability_Cold-Blooded.png/60px-S2_Ability_Cold-Blooded.png 		 >
-					<img class="ability" 	id="Ability_Comeback" title="Ability Comeback"		 			src= https://cdn.wikimg.net/splatoonwiki/images/4/4a/Ability_Comeback.svg 													 >
-					<img class="ability" 	id="Ability_Drop_Roller" title="Ability Drop_Roller"		 		src= https://cdn.wikimg.net/splatoonwiki/images/thumb/1/17/S2_Ability_Drop_Roller.png/60px-S2_Ability_Drop_Roller.png 			 >
-					
-					<img class="ability" 	id="Ability_Haunt" title="Ability Haunt" 				 				src= https://cdn.wikimg.net/splatoonwiki/images/thumb/d/d9/S2_Ability_Haunt.png/60px-S2_Ability_Haunt.png 								 >
-					<img class="ability" 	id="Ability_Ink_Recovery_Up" title="Ability Ink_Recovery_Up"  	 	src= https://cdn.wikimg.net/splatoonwiki/images/2/25/Ability_Ink_Recovery_Up.svg 															 >
-					<img class="ability" 	id="Ability_Ink_Resistance_Up" title="Ability Ink_Resistance_Up"	 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/e/ec/S2_Ability_Ink_Resistance_Up.png/60px-S2_Ability_Ink_Resistance_Up.png 			 >
-					<img class="ability" 	id="Ability_Ink_Saver_Main" title="Ability Ink_Saver_Main"		 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/e/e6/S2_Ability_Ink_Saver_%28Main%29.png/60px-S2_Ability_Ink_Saver_%28Main%29.png 	>
-					<img class="ability" 	id="Ability_Ink_Saver_Sub" title="Ability Ink_Saver_Sub"		 		src= https://cdn.wikimg.net/splatoonwiki/images/e/ef/Ability_Ink_Saver_%28Sub%29.svg 														 >
-					
-					<img class="ability" 	id="Ability_Last-Ditch_Effort" title="Ability Last-Ditch_Effort" 	 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/2/22/S2_Ability_Last-Ditch_Effort.png/60px-S2_Ability_Last-Ditch_Effort.png 	 >
-					<img class="ability"	id="Ability_Ninja_Squid" title="Ability Ninja_Squid" 		 		src= https://cdn.wikimg.net/splatoonwiki/images/9/91/Ability_Ninja_Squid.svg 														 >
-					<img class="ability" 	id="Ability_Object_Shredder" title="Ability Object_Shredder" 	 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/9/92/S2_Ability_Object_Shredder.png/60px-S2_Ability_Object_Shredder.png 		 >
-					<img class="ability" 	id="Ability_Opening_Gambit" title="Ability Opening_Gambit" 		 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/3/39/S2_Ability_Opening_Gambit.png/60px-S2_Ability_Opening_Gambit.png 		 >
-					<img class="ability" 	id="Ability_Quick_Respawn" title="Ability Quick_Respawn" 		 		src= https://cdn.wikimg.net/splatoonwiki/images/thumb/b/b2/S2_Ability_Quick_Respawn.png/60px-S2_Ability_Quick_Respawn.png 		 >
-					
-					<img class="ability" 	id="Ability_Quick_Super_Jump" title="Ability Quick_Super_Jump" 	 	src= https://cdn.wikimg.net/splatoonwiki/images/3/3d/Ability_Quick_Super_Jump.svg 													 >
-					<img class="ability" 	id="Ability_Respawn_Punisher" title="Ability Respawn_Punisher" 	 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/4/4e/S2_Ability_Respawn_Punisher.png/60px-S2_Ability_Respawn_Punisher.png 	 >
-					<img class="ability" 	id="Ability_Run_Speed_Up" title="Ability Run_Speed_Up" 		 		src= https://cdn.wikimg.net/splatoonwiki/images/4/42/Ability_Run_Speed_Up.svg 													 >
-					<img class="ability" 	id="Ability_Special_Charge_Up" title="Ability Special_Charge_Up"	 	src= https://cdn.wikimg.net/splatoonwiki/images/f/f6/Ability_Special_Charge_Up.svg 													 >
-					<img class="ability" 	id="Ability_Special_Power_Up" title="Ability Special_Power_Up" 	 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/8/80/S2_Ability_Special_Power_Up.png/60px-S2_Ability_Special_Power_Up.png 	>
-					
-					<img class="ability" 	id="Ability_Special_Saver" title="Ability Special_Saver" 	 	src= https://cdn.wikimg.net/splatoonwiki/images/1/11/Ability_Special_Saver.svg 											>
-					<img class="ability" 	id="Ability_Stealth_Jump" title="Ability Stealth_Jump" 	 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/3/34/S2_Ability_Stealth_Jump.png/60px-S2_Ability_Stealth_Jump.png	>
-					<img class="ability" 	id="Ability_Sub_Power_Up" title="Ability Sub_Power_Up"	 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/6/6a/S2_Ability_Sub_Power_Up.png/60px-S2_Ability_Sub_Power_Up.png	 >
-					<img class="ability" 	id="Ability_Swim_Speed_Up" title="Ability Swim_Speed_Up"	 	src= https://cdn.wikimg.net/splatoonwiki/images/d/de/Ability_Swim_Speed_Up.svg 											 >
-					<img class="ability" 	id="Ability_Tenacity" title="Ability Tenacity" 		 		src= https://cdn.wikimg.net/splatoonwiki/images/1/19/Ability_Tenacity.svg 												>
-					
-					<img class="ability" 	id="Ability_Thermal_Ink" title="Ability Thermal_Ink" 	 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/4/46/S2_Ability_Thermal_Ink.png/60px-S2_Ability_Thermal_Ink.png 	 >
+				<div class="panel-heading">
+					<h4 class="panel-title" data-toggle="collapse" data-target="#brandPanel">Select brand abilities <span id="brandCounter" class="badge">0</span> <span id="brandLabel" class="label label-default hidden">Priority</span></h4>
 				</div>
-			</div>
-			
-			<div class="panel panel-default">
-				<div class="panel-heading">Select main abilities</div>
-				<div class="panel-body">
-					<img class="brand" 	title="Brand_Bomb_Defense_Up" id="Brand_Bomb_Defense_Up" 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/c/ce/S2_Ability_Bomb_Defense_Up.png/60px-S2_Ability_Bomb_Defense_Up.png 	alt="">
-					<img class="brand" 	title="Brand_Cold_Blooded" 	id="Brand_Cold_Blooded" 		src= https://cdn.wikimg.net/splatoonwiki/images/thumb/8/86/S2_Ability_Cold-Blooded.png/60px-S2_Ability_Cold-Blooded.png 		alt="">
-					<img class="brand" 	title="Brand_Ink_Recovery_Up"  	id="Brand_Ink_Recovery_Up" 	src= https://cdn.wikimg.net/splatoonwiki/images/2/25/Ability_Ink_Recovery_Up.svg 															alt="">
-					<img class="brand" 	title="Brand_Ink_Resistance_Up"	id="Brand_Ink_Resistance_Up" 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/e/ec/S2_Ability_Ink_Resistance_Up.png/60px-S2_Ability_Ink_Resistance_Up.png 			alt="">
-					<img class="brand" 	title="Brand_Ink_Saver_Main"		id="Brand_Ink_Saver_Main" 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/e/e6/S2_Ability_Ink_Saver_%28Main%29.png/60px-S2_Ability_Ink_Saver_%28Main%29.png 	alt="">
-					
-					<img class="brand" 	title="Brand_Ink_Saver_Sub"		id="Brand_Ink_Saver_Sub" 		src= https://cdn.wikimg.net/splatoonwiki/images/e/ef/Ability_Ink_Saver_%28Sub%29.svg 														alt="">
-					<img class="brand" 	title="Brand_Quick_Respawn" 		id="Brand_Quick_Respawn" 		src= https://cdn.wikimg.net/splatoonwiki/images/thumb/b/b2/S2_Ability_Quick_Respawn.png/60px-S2_Ability_Quick_Respawn.png 			alt="">
-					<img class="brand" 	title="Brand_Quick_Super_Jump" 	id="Brand_Quick_Super_Jump" 	src= https://cdn.wikimg.net/splatoonwiki/images/3/3d/Ability_Quick_Super_Jump.svg 													alt="">
-					<img class="brand" 	title="Brand_Run_Speed_Up" 		id="Brand_Run_Speed_Up" 		src= https://cdn.wikimg.net/splatoonwiki/images/4/42/Ability_Run_Speed_Up.svg 														alt="">
-					<img class="brand" 	title="Brand_Special_Charge_Up"	id="Brand_Special_Charge_Up" 	src= https://cdn.wikimg.net/splatoonwiki/images/f/f6/Ability_Special_Charge_Up.svg 													alt="">
-					
-					<img class="brand" 	title="Brand_Special_Power_Up" 	id="Brand_Special_Power_Up" 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/8/80/S2_Ability_Special_Power_Up.png/60px-S2_Ability_Special_Power_Up.png 	alt="">
-					<img class="brand" 	title="Brand_Special_Saver" 	id="Brand_Special_Saver" 	src= https://cdn.wikimg.net/splatoonwiki/images/1/11/Ability_Special_Saver.svg 											alt="">
-					<img class="brand" 	title="Brand_Sub_Power_Up"	id="Brand_Sub_Power_Up" 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/6/6a/S2_Ability_Sub_Power_Up.png/60px-S2_Ability_Sub_Power_Up.png	alt="">
-					<img class="brand" 	title="Brand_Swim_Speed_Up"	id="Brand_Swim_Speed_Up" 	src= https://cdn.wikimg.net/splatoonwiki/images/d/de/Ability_Swim_Speed_Up.svg 											alt="">
+				<div id="brandPanel" class="panel-collapse collapse">
+					<div class="panel-body">
+						<img class="brand" 	title="Brand_Bomb_Defense_Up" id="Brand_Bomb_Defense_Up" 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/c/ce/S2_Ability_Bomb_Defense_Up.png/60px-S2_Ability_Bomb_Defense_Up.png 	alt="">
+						<img class="brand" 	title="Brand_Cold_Blooded" 	id="Brand_Cold_Blooded" 		src= https://cdn.wikimg.net/splatoonwiki/images/thumb/8/86/S2_Ability_Cold-Blooded.png/60px-S2_Ability_Cold-Blooded.png 		alt="">
+						<img class="brand" 	title="Brand_Ink_Recovery_Up"  	id="Brand_Ink_Recovery_Up" 	src= https://cdn.wikimg.net/splatoonwiki/images/2/25/Ability_Ink_Recovery_Up.svg 															alt="">
+						<img class="brand" 	title="Brand_Ink_Resistance_Up"	id="Brand_Ink_Resistance_Up" 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/e/ec/S2_Ability_Ink_Resistance_Up.png/60px-S2_Ability_Ink_Resistance_Up.png 			alt="">
+						<img class="brand" 	title="Brand_Ink_Saver_Main"		id="Brand_Ink_Saver_Main" 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/e/e6/S2_Ability_Ink_Saver_%28Main%29.png/60px-S2_Ability_Ink_Saver_%28Main%29.png 	alt="">
+						
+						<img class="brand" 	title="Brand_Ink_Saver_Sub"		id="Brand_Ink_Saver_Sub" 		src= https://cdn.wikimg.net/splatoonwiki/images/e/ef/Ability_Ink_Saver_%28Sub%29.svg 														alt="">
+						<img class="brand" 	title="Brand_Quick_Respawn" 		id="Brand_Quick_Respawn" 		src= https://cdn.wikimg.net/splatoonwiki/images/thumb/b/b2/S2_Ability_Quick_Respawn.png/60px-S2_Ability_Quick_Respawn.png 			alt="">
+						<img class="brand" 	title="Brand_Quick_Super_Jump" 	id="Brand_Quick_Super_Jump" 	src= https://cdn.wikimg.net/splatoonwiki/images/3/3d/Ability_Quick_Super_Jump.svg 													alt="">
+						<img class="brand" 	title="Brand_Run_Speed_Up" 		id="Brand_Run_Speed_Up" 		src= https://cdn.wikimg.net/splatoonwiki/images/4/42/Ability_Run_Speed_Up.svg 														alt="">
+						<img class="brand" 	title="Brand_Special_Charge_Up"	id="Brand_Special_Charge_Up" 	src= https://cdn.wikimg.net/splatoonwiki/images/f/f6/Ability_Special_Charge_Up.svg 													alt="">
+						
+						<img class="brand" 	title="Brand_Special_Power_Up" 	id="Brand_Special_Power_Up" 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/8/80/S2_Ability_Special_Power_Up.png/60px-S2_Ability_Special_Power_Up.png 	alt="">
+						<img class="brand" 	title="Brand_Special_Saver" 	id="Brand_Special_Saver" 	src= https://cdn.wikimg.net/splatoonwiki/images/1/11/Ability_Special_Saver.svg 											alt="">
+						<img class="brand" 	title="Brand_Sub_Power_Up"	id="Brand_Sub_Power_Up" 	src= https://cdn.wikimg.net/splatoonwiki/images/thumb/6/6a/S2_Ability_Sub_Power_Up.png/60px-S2_Ability_Sub_Power_Up.png	alt="">
+						<img class="brand" 	title="Brand_Swim_Speed_Up"	id="Brand_Swim_Speed_Up" 	src= https://cdn.wikimg.net/splatoonwiki/images/d/de/Ability_Swim_Speed_Up.svg 											alt="">
+					</div>
 				</div>
 			</div>
 			
 		
 		</div>
 
+	</div>
+	
+	<div class="container text-center">
+		<h3 class="text-left">Outfit summaries</h3>
+		
+		<div class="row">
+
+			<div class="col-sm-4">
+				<div class="panel panel-success">
+					<div class="panel-heading" id="strictOutfitSummary"><h4>Strict Outfits</h4></div>
+					<div class="panel-body text-left"></div>
+				</div>
+			</div>
+			
+			<div class="col-sm-4">
+				<div class="panel panel-info">
+					<div class="panel-heading" id="flexOutfitSummary"><h4>Flex Outfits</h4></div>
+					<div class="panel-body text-left"></div>
+				</div>
+			</div>
+			
+			<div class="col-sm-4">
+				<div class="panel panel-warning">
+					<div class="panel-heading" id="looseOutfitSummary"><h4>Loose Outfits</h4></div>
+					<div class="panel-body text-left"></div>
+				</div>
+			</div>
+			
+		</div>
+		
+	</div>
+	
+	<div class="container text-center">
+		
+		<h3 class="text-left">Outfit outputs</h3>	
+	
+		<div class="row">
+
+			<div class="col-sm-4">
+				<div class="panel panel-success">
+					<div class="panel-heading" id="strictOutfitTitle"><h4>Strict Outfits <span id="strictOutfitCounter" class="badge">0</span></h4></div>
+					<div class="panel-body"></div>
+				</div>
+			</div>
+			
+			<div class="col-sm-4">
+				<div class="panel panel-info">
+					<div class="panel-heading" id="flexOutfitTitle"><h4>Flex Outfits <span id="flexOutfitCounter" class="badge">0</span></h4></div>
+					<div class="panel-body"></div>
+				</div>
+			</div>
+			
+			<div class="col-sm-4">
+				<div class="panel panel-warning">
+					<div class="panel-heading" id="looseOutfitTitle"><h4>Loose Outfits <span id="looseOutfitCounter" class="badge">0</span></h4></div>
+					<div class="panel-body"></div>
+				</div>
+			</div>
+			
+		</div>
 		
 	</div>
 	
@@ -193,24 +260,7 @@
 		<h2>Shoe gear</h2>
 			<p class="shoeGear"> </p>
 	</div>
-	
-	<div class="container">
-		<h2> Outfit summary </h2>
-		<div class="row">
-			<div class="col-sm-4">.col-sm-4</div>
-			<div class="col-sm-4">.col-sm-4</div>
-			<div class="col-sm-4">.col-sm-4</div>
-		</div>
-	</div>
-	
-	<div class="container">	
-		
-		<h2> Outfits </h2>
-		
-		<h3 id="strictOutfitTitle"> Strict Outfits  <span id="strictOutfitCounter" class="label label-default">0</span> </h3>
-		<h3 id="flexOutfitTitle">Flex Outfits <span id="flexOutfitCounter" class="label label-default">0</span> </h3>
-		<h3 id="looseOutfitTitle">Loose Outfits <span id="looseOutfitCounter" class="label label-default">0</span> </h3>
-	</div>
+
 	
 </body>
 
