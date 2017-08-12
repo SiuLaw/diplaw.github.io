@@ -1,8 +1,8 @@
-* {
+.none {
 	border: 1px solid rgba(0,0,0,0.3);
 }
 
-.abilitiesList img, .brandList img, .gearList img, .gear {
+img, .gear {
   height: 100px;
   width: 100px;
 }

@@ -52,6 +52,7 @@ $(document).ready( function() {
 							"Cold-Blooded", 	"Special Saver", 	"Quick Super Jump"
 							];
 	
+	
 	// Functions
 	function visualCheckList(){
 		$("#list").text( abilityCheckList + " ; " + brandCheckList );
@@ -920,7 +921,6 @@ $(document).ready( function() {
 		
 		// remove any previous results elements
 		$("." + outfitType).remove();
-		$("." + outfitType + "counter").remove();
 		
 		for( i = currentArray.length - 1; i >= 0; i-- ) { 
 			var currentOutfit = currentArray[i]
@@ -928,10 +928,7 @@ $(document).ready( function() {
 			var el = string2Element( string, outfitType );
 			$(outputAfter).after( el );;
 		}
-		var string = "Current outfit count: " + currentArray.length
-		var el = $("<div></div>").append( $("<p></p>").text(string) );
-		el.addClass(outfitType + "counter");
-		$(outputAfter).after( el ) 
+		$("#" + outfitType + "Counter").text( currentArray.length ); 
 	}
 
 	
