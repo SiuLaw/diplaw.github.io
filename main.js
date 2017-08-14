@@ -1018,6 +1018,5 @@ $(document).ready( function() {
 		$(outputAfter).after( el );
 			
 	}
-
 	
 });
