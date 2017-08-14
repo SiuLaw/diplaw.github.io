@@ -914,6 +914,7 @@ $(document).ready( function() {
 	}
 		
 	function extractProp2StringWithLayer( object, key1, keys ) {
+		// output STRINGS of the desired property of the array
 		
 		var output = ""
 		
@@ -935,7 +936,7 @@ $(document).ready( function() {
 			var currentOutfit = currentArray[i]
 			var string = extractProp2StringWithLayer( currentOutfit, outerKey, innerKey );
 			var el = string2Element( string, outfitType );
-			$(outputAfter).after( el );;
+			$(outputAfter).after( el );
 		}
 		$("#" + outfitType + "Counter").text( currentArray.length ); 
 	}
@@ -946,14 +947,77 @@ $(document).ready( function() {
 		var abilityList = 	index2shortName(abilityCheckList);
 		var brandList = 	index2shortName(brandCheckList);
 		
-		var arrayOutfit = chooseGear(abilityList,brandList);		
-		printOutfitFromArray( arrayOutfit, "strictOutfit", ["head","cloth","shoe"], ["name"],"#strictOutfitTitle")
+		var strictOutfitArray = chooseGear(abilityList,brandList);		
+		printOutfitFromArray( strictOutfitArray, "strictOutfit", ["head","cloth","shoe"], ["name"],"#strictOutfitTitle")
+		updateSummary( strictOutfitArray, "strictOutfit");
 		
-		var arrayOutfitFlex = chooseFlexGear(abilityList,brandList);
-		printOutfitFromArray( arrayOutfitFlex, "flexOutfit", ["head","cloth","shoe"], ["name"],"#flexOutfitTitle")
+		var flexOutfitArray = chooseFlexGear(abilityList,brandList);
+		printOutfitFromArray( flexOutfitArray, "flexOutfit", ["head","cloth","shoe"], ["name"],"#flexOutfitTitle")
+		updateSummary( flexOutfitArray, "flexOutfit");
 		
-		var arrayOutfitLoose = chooseLooseGear(abilityList,brandList);
-		printOutfitFromArray( arrayOutfitLoose, "looseOutfit", ["head","cloth","shoe"], ["name"],"#looseOutfitTitle")
+		var looseOutfitArray = chooseLooseGear(abilityList,brandList);
+		printOutfitFromArray( looseOutfitArray, "looseOutfit", ["head","cloth","shoe"], ["name"],"#looseOutfitTitle")
+		updateSummary( looseOutfitArray, "looseOutfit");
 	}
+	
+	function sortByFrequency(array) {
+		var frequency = {};
+		
+		array.forEach( function(value) { frequency[value] = 0; });
+		
+		var uniques = array.filter( function(value) {
+			return ++frequency[value] == 1;
+		});
+		
+		return uniques.sort( function(a,b) {
+			return frequency[b] - frequency[a];
+		});
+	}
+	
+	function extractSubAbility( outfitArray, bodyPart ) {
+		var occurArray = [];
+		for( var i = outfitArray.length - 1; i >= 0; i-- ) {
+			var currentOutfit = outfitArray[i]
+			
+			if( modeValue === 0 ) {
+				// brand sub
+				var name = currentOutfit[bodyPart].brandAbility();
+			} else {
+				// main sub
+				var name = currentOutfit[bodyPart].ability;
+			}
+			occurArray.push( name );
+		}
+		return occurArray;
+	}
+	
+	function updateSummary( outfitArray, outfitType ) {
+		
+		var outputAfter = "#" + outfitType + "Summary";
+		var className = outfitType + "Testing";
+		$("." + className).remove();
+		var bodyPart = "head"
+		
+		if( outfitArray.length === 0 ) {return; };
+		
+		if( modeValue === 0 ) {
+			// brand sub
+			var prefix = "Most common BRAND abilities: "
+		} else {
+			// main sub
+			var prefix = "Most common MAIN abilities: "
+		}
+		
+		var occurArray = [];
+		occurArray = occurArray.concat( extractSubAbility( outfitArray, "head" ) );
+		occurArray = occurArray.concat( extractSubAbility( outfitArray, "cloth" ) );
+		occurArray = occurArray.concat( extractSubAbility( outfitArray, "shoe" ) );
+		
+		var sorted = sortByFrequency( occurArray );
+		var el = string2Element( prefix + sorted.slice(0,3), className );
+		$(outputAfter).after( el );
+			
+	}
+
 	
 });
